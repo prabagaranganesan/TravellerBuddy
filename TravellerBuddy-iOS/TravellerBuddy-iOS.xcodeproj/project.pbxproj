@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		506D492E2B32AD2200B38868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D492D2B32AD2200B38868 /* AppDelegate.swift */; };
+		506D49302B32AD2200B38868 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D492F2B32AD2200B38868 /* SceneDelegate.swift */; };
+		506D49322B32AD2200B38868 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49312B32AD2200B38868 /* ViewController.swift */; };
+		506D49352B32AD2200B38868 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506D49332B32AD2200B38868 /* Main.storyboard */; };
+		506D49372B32AD2300B38868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506D49362B32AD2300B38868 /* Assets.xcassets */; };
+		506D493A2B32AD2300B38868 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506D49382B32AD2300B38868 /* LaunchScreen.storyboard */; };
+		506D49452B32AD2300B38868 /* TravellerBuddy_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49442B32AD2300B38868 /* TravellerBuddy_iOSTests.swift */; };
+		506D494F2B32AD2300B38868 /* TravellerBuddy_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D494E2B32AD2300B38868 /* TravellerBuddy_iOSUITests.swift */; };
+		506D49512B32AD2300B38868 /* TravellerBuddy_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49502B32AD2300B38868 /* TravellerBuddy_iOSUITestsLaunchTests.swift */; };
+		506D49632B32AF9700B38868 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49622B32AF9700B38868 /* NetworkConfig.swift */; };
+		506D49652B32B07300B38868 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49642B32B07300B38868 /* DataTransferService.swift */; };
+		506D49672B32C55D00B38868 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49662B32C55D00B38868 /* NetworkService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		506D49412B32AD2300B38868 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 506D49222B32AD2200B38868 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 506D49292B32AD2200B38868;
+			remoteInfo = "TravellerBuddy-iOS";
+		};
+		506D494B2B32AD2300B38868 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 506D49222B32AD2200B38868 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 506D49292B32AD2200B38868;
+			remoteInfo = "TravellerBuddy-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		506D492A2B32AD2200B38868 /* TravellerBuddy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TravellerBuddy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		506D492D2B32AD2200B38868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		506D492F2B32AD2200B38868 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		506D49312B32AD2200B38868 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		506D49342B32AD2200B38868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		506D49362B32AD2300B38868 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		506D49392B32AD2300B38868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		506D493B2B32AD2300B38868 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		506D49402B32AD2300B38868 /* TravellerBuddy-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TravellerBuddy-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		506D49442B32AD2300B38868 /* TravellerBuddy_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerBuddy_iOSTests.swift; sourceTree = "<group>"; };
+		506D494A2B32AD2300B38868 /* TravellerBuddy-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TravellerBuddy-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		506D494E2B32AD2300B38868 /* TravellerBuddy_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerBuddy_iOSUITests.swift; sourceTree = "<group>"; };
+		506D49502B32AD2300B38868 /* TravellerBuddy_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerBuddy_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		506D49622B32AF9700B38868 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		506D49642B32B07300B38868 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
+		506D49662B32C55D00B38868 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		506D49272B32AD2200B38868 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506D493D2B32AD2300B38868 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506D49472B32AD2300B38868 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		506D49212B32AD2200B38868 = {
+			isa = PBXGroup;
+			children = (
+				506D492C2B32AD2200B38868 /* TravellerBuddy-iOS */,
+				506D49432B32AD2300B38868 /* TravellerBuddy-iOSTests */,
+				506D494D2B32AD2300B38868 /* TravellerBuddy-iOSUITests */,
+				506D492B2B32AD2200B38868 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		506D492B2B32AD2200B38868 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				506D492A2B32AD2200B38868 /* TravellerBuddy-iOS.app */,
+				506D49402B32AD2300B38868 /* TravellerBuddy-iOSTests.xctest */,
+				506D494A2B32AD2300B38868 /* TravellerBuddy-iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		506D492C2B32AD2200B38868 /* TravellerBuddy-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				506D49612B32AD7C00B38868 /* Common */,
+				506D49602B32AD6A00B38868 /* Infrastructure */,
+				506D495F2B32AD6000B38868 /* Domain */,
+				506D495E2B32AD4D00B38868 /* Presentation */,
+				506D495D2B32AD4100B38868 /* Application */,
+				506D492D2B32AD2200B38868 /* AppDelegate.swift */,
+				506D492F2B32AD2200B38868 /* SceneDelegate.swift */,
+				506D49312B32AD2200B38868 /* ViewController.swift */,
+				506D49332B32AD2200B38868 /* Main.storyboard */,
+				506D49362B32AD2300B38868 /* Assets.xcassets */,
+				506D49382B32AD2300B38868 /* LaunchScreen.storyboard */,
+				506D493B2B32AD2300B38868 /* Info.plist */,
+			);
+			path = "TravellerBuddy-iOS";
+			sourceTree = "<group>";
+		};
+		506D49432B32AD2300B38868 /* TravellerBuddy-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				506D49442B32AD2300B38868 /* TravellerBuddy_iOSTests.swift */,
+			);
+			path = "TravellerBuddy-iOSTests";
+			sourceTree = "<group>";
+		};
+		506D494D2B32AD2300B38868 /* TravellerBuddy-iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				506D494E2B32AD2300B38868 /* TravellerBuddy_iOSUITests.swift */,
+				506D49502B32AD2300B38868 /* TravellerBuddy_iOSUITestsLaunchTests.swift */,
+			);
+			path = "TravellerBuddy-iOSUITests";
+			sourceTree = "<group>";
+		};
+		506D495D2B32AD4100B38868 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		506D495E2B32AD4D00B38868 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		506D495F2B32AD6000B38868 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		506D49602B32AD6A00B38868 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				506D49622B32AF9700B38868 /* NetworkConfig.swift */,
+				506D49642B32B07300B38868 /* DataTransferService.swift */,
+				506D49662B32C55D00B38868 /* NetworkService.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		506D49612B32AD7C00B38868 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		506D49292B32AD2200B38868 /* TravellerBuddy-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 506D49542B32AD2300B38868 /* Build configuration list for PBXNativeTarget "TravellerBuddy-iOS" */;
+			buildPhases = (
+				506D49262B32AD2200B38868 /* Sources */,
+				506D49272B32AD2200B38868 /* Frameworks */,
+				506D49282B32AD2200B38868 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TravellerBuddy-iOS";
+			productName = "TravellerBuddy-iOS";
+			productReference = 506D492A2B32AD2200B38868 /* TravellerBuddy-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		506D493F2B32AD2300B38868 /* TravellerBuddy-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 506D49572B32AD2300B38868 /* Build configuration list for PBXNativeTarget "TravellerBuddy-iOSTests" */;
+			buildPhases = (
+				506D493C2B32AD2300B38868 /* Sources */,
+				506D493D2B32AD2300B38868 /* Frameworks */,
+				506D493E2B32AD2300B38868 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				506D49422B32AD2300B38868 /* PBXTargetDependency */,
+			);
+			name = "TravellerBuddy-iOSTests";
+			productName = "TravellerBuddy-iOSTests";
+			productReference = 506D49402B32AD2300B38868 /* TravellerBuddy-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		506D49492B32AD2300B38868 /* TravellerBuddy-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 506D495A2B32AD2300B38868 /* Build configuration list for PBXNativeTarget "TravellerBuddy-iOSUITests" */;
+			buildPhases = (
+				506D49462B32AD2300B38868 /* Sources */,
+				506D49472B32AD2300B38868 /* Frameworks */,
+				506D49482B32AD2300B38868 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				506D494C2B32AD2300B38868 /* PBXTargetDependency */,
+			);
+			name = "TravellerBuddy-iOSUITests";
+			productName = "TravellerBuddy-iOSUITests";
+			productReference = 506D494A2B32AD2300B38868 /* TravellerBuddy-iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		506D49222B32AD2200B38868 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					506D49292B32AD2200B38868 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					506D493F2B32AD2300B38868 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 506D49292B32AD2200B38868;
+					};
+					506D49492B32AD2300B38868 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 506D49292B32AD2200B38868;
+					};
+				};
+			};
+			buildConfigurationList = 506D49252B32AD2200B38868 /* Build configuration list for PBXProject "TravellerBuddy-iOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 506D49212B32AD2200B38868;
+			productRefGroup = 506D492B2B32AD2200B38868 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				506D49292B32AD2200B38868 /* TravellerBuddy-iOS */,
+				506D493F2B32AD2300B38868 /* TravellerBuddy-iOSTests */,
+				506D49492B32AD2300B38868 /* TravellerBuddy-iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		506D49282B32AD2200B38868 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				506D493A2B32AD2300B38868 /* LaunchScreen.storyboard in Resources */,
+				506D49372B32AD2300B38868 /* Assets.xcassets in Resources */,
+				506D49352B32AD2200B38868 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506D493E2B32AD2300B38868 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506D49482B32AD2300B38868 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		506D49262B32AD2200B38868 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				506D49322B32AD2200B38868 /* ViewController.swift in Sources */,
+				506D492E2B32AD2200B38868 /* AppDelegate.swift in Sources */,
+				506D49632B32AF9700B38868 /* NetworkConfig.swift in Sources */,
+				506D49302B32AD2200B38868 /* SceneDelegate.swift in Sources */,
+				506D49672B32C55D00B38868 /* NetworkService.swift in Sources */,
+				506D49652B32B07300B38868 /* DataTransferService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506D493C2B32AD2300B38868 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				506D49452B32AD2300B38868 /* TravellerBuddy_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		506D49462B32AD2300B38868 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				506D494F2B32AD2300B38868 /* TravellerBuddy_iOSUITests.swift in Sources */,
+				506D49512B32AD2300B38868 /* TravellerBuddy_iOSUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		506D49422B32AD2300B38868 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 506D49292B32AD2200B38868 /* TravellerBuddy-iOS */;
+			targetProxy = 506D49412B32AD2300B38868 /* PBXContainerItemProxy */;
+		};
+		506D494C2B32AD2300B38868 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 506D49292B32AD2200B38868 /* TravellerBuddy-iOS */;
+			targetProxy = 506D494B2B32AD2300B38868 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		506D49332B32AD2200B38868 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				506D49342B32AD2200B38868 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		506D49382B32AD2300B38868 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				506D49392B32AD2300B38868 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		506D49522B32AD2300B38868 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		506D49532B32AD2300B38868 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		506D49552B32AD2300B38868 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TravellerBuddy-iOS/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gojek.prabagaran.TravellerBuddy-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		506D49562B32AD2300B38868 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TravellerBuddy-iOS/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gojek.prabagaran.TravellerBuddy-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		506D49582B32AD2300B38868 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gojek.prabagaran.TravellerBuddy-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TravellerBuddy-iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TravellerBuddy-iOS";
+			};
+			name = Debug;
+		};
+		506D49592B32AD2300B38868 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gojek.prabagaran.TravellerBuddy-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TravellerBuddy-iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TravellerBuddy-iOS";
+			};
+			name = Release;
+		};
+		506D495B2B32AD2300B38868 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gojek.prabagaran.TravellerBuddy-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "TravellerBuddy-iOS";
+			};
+			name = Debug;
+		};
+		506D495C2B32AD2300B38868 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gojek.prabagaran.TravellerBuddy-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "TravellerBuddy-iOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		506D49252B32AD2200B38868 /* Build configuration list for PBXProject "TravellerBuddy-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				506D49522B32AD2300B38868 /* Debug */,
+				506D49532B32AD2300B38868 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		506D49542B32AD2300B38868 /* Build configuration list for PBXNativeTarget "TravellerBuddy-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				506D49552B32AD2300B38868 /* Debug */,
+				506D49562B32AD2300B38868 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		506D49572B32AD2300B38868 /* Build configuration list for PBXNativeTarget "TravellerBuddy-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				506D49582B32AD2300B38868 /* Debug */,
+				506D49592B32AD2300B38868 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		506D495A2B32AD2300B38868 /* Build configuration list for PBXNativeTarget "TravellerBuddy-iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				506D495B2B32AD2300B38868 /* Debug */,
+				506D495C2B32AD2300B38868 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 506D49222B32AD2200B38868 /* Project object */;
+}
