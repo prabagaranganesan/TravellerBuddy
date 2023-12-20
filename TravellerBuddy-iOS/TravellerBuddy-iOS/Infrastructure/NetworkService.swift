@@ -10,9 +10,19 @@ import Foundation
 //TODO: add reason to have defaultnetwork
 protocol NetworkSessionManager {
     typealias CompletionHandler = (Data?, URLResponse?, Error?) -> Void
-    func request(_request: URLRequest,
+    func request(_ request: URLRequest,
                  completion: @escaping CompletionHandler) -> NetworkCancellable
 }
+
+final class DefaultSessionManager: NetworkSessionManager {
+    func request(_ request: URLRequest, completion: @escaping CompletionHandler) -> NetworkCancellable {
+        let task = URLSession.shared.dataTask(with: request, completionHandler: completion)
+        task.resume()
+        return task
+    }
+}
+
+extension URLSessionTask: NetworkCancellable { }
 
 protocol NetworkService {
     typealias CompletionHandler = (Result<Data?, NetworkError>) -> Void
@@ -43,7 +53,7 @@ final class DefaultNetworkService: NetworkService {
     private func request(request: URLRequest,
                          completion: @escaping CompletionHandler) -> NetworkCancellable {
         
-        let sessionDataTask = sessionManager.request(_request: request) { data, response, error in
+        let sessionDataTask = sessionManager.request(request) { data, response, error in
             if let requestError = error {
                 var error: NetworkError
                 if let response = response as? HTTPURLResponse {

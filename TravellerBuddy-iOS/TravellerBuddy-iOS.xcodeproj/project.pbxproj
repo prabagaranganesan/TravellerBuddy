@@ -20,6 +20,8 @@
 		506D49652B32B07300B38868 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49642B32B07300B38868 /* DataTransferService.swift */; };
 		506D49672B32C55D00B38868 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49662B32C55D00B38868 /* NetworkService.swift */; };
 		506D49692B32D71700B38868 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49682B32D71700B38868 /* Endpoint.swift */; };
+		506D496B2B32E11200B38868 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D496A2B32E11200B38868 /* AppConfiguration.swift */; };
+		506D496D2B32E18500B38868 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D496C2B32E18500B38868 /* AppDIContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		506D49642B32B07300B38868 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		506D49662B32C55D00B38868 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		506D49682B32D71700B38868 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		506D496A2B32E11200B38868 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		506D496C2B32E18500B38868 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,8 @@
 		506D495D2B32AD4100B38868 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				506D496A2B32E11200B38868 /* AppConfiguration.swift */,
+				506D496C2B32E18500B38868 /* AppDIContainer.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -312,11 +318,13 @@
 			files = (
 				506D49692B32D71700B38868 /* Endpoint.swift in Sources */,
 				506D49322B32AD2200B38868 /* ViewController.swift in Sources */,
+				506D496B2B32E11200B38868 /* AppConfiguration.swift in Sources */,
 				506D492E2B32AD2200B38868 /* AppDelegate.swift in Sources */,
 				506D49632B32AF9700B38868 /* NetworkConfig.swift in Sources */,
 				506D49302B32AD2200B38868 /* SceneDelegate.swift in Sources */,
 				506D49672B32C55D00B38868 /* NetworkService.swift in Sources */,
 				506D49652B32B07300B38868 /* DataTransferService.swift in Sources */,
+				506D496D2B32E18500B38868 /* AppDIContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
