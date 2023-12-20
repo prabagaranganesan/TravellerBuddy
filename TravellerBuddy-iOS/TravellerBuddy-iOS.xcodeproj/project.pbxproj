@@ -19,6 +19,7 @@
 		506D49632B32AF9700B38868 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49622B32AF9700B38868 /* NetworkConfig.swift */; };
 		506D49652B32B07300B38868 /* DataTransferService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49642B32B07300B38868 /* DataTransferService.swift */; };
 		506D49672B32C55D00B38868 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49662B32C55D00B38868 /* NetworkService.swift */; };
+		506D49692B32D71700B38868 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49682B32D71700B38868 /* Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		506D49622B32AF9700B38868 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		506D49642B32B07300B38868 /* DataTransferService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTransferService.swift; sourceTree = "<group>"; };
 		506D49662B32C55D00B38868 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		506D49682B32D71700B38868 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				506D49622B32AF9700B38868 /* NetworkConfig.swift */,
 				506D49642B32B07300B38868 /* DataTransferService.swift */,
+				506D49682B32D71700B38868 /* Endpoint.swift */,
 				506D49662B32C55D00B38868 /* NetworkService.swift */,
 			);
 			path = Infrastructure;
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				506D49692B32D71700B38868 /* Endpoint.swift in Sources */,
 				506D49322B32AD2200B38868 /* ViewController.swift in Sources */,
 				506D492E2B32AD2200B38868 /* AppDelegate.swift in Sources */,
 				506D49632B32AF9700B38868 /* NetworkConfig.swift in Sources */,

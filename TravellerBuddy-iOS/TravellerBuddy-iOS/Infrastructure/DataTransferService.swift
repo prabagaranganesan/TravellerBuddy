@@ -42,6 +42,7 @@ protocol Requestable {
     var headerParameters: [String: String] { get }
     var queryParameters: [String: Any] { get }
     var bodyParamters: [String: Any] { get }
+    var isFullPath: Bool { get }
     
     func urlRequest(with networkConfig: NetworkConfigurable) throws -> URLRequest
 }
@@ -57,7 +58,7 @@ protocol DataTransferService {
     func request<T: Decodable, E: ResponseRequestable>(with endpoint: E,
                                                        completion: @escaping CompletionHandler<T>) -> NetworkCancellable? where E.Response == T
     func request<E: ResponseRequestable>(with endpoint: E,
-                                                       completion: @escaping CompletionHandler<Void>) -> NetworkCancellable? where E.Response == Void
+                                         completion: @escaping CompletionHandler<Void>) -> NetworkCancellable? where E.Response == Void
 }
 
 final class DefaultDataTransferService: DataTransferService {
