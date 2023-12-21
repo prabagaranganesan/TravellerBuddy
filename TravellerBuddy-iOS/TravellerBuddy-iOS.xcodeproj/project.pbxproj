@@ -22,6 +22,18 @@
 		506D49692B32D71700B38868 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49682B32D71700B38868 /* Endpoint.swift */; };
 		506D496B2B32E11200B38868 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D496A2B32E11200B38868 /* AppConfiguration.swift */; };
 		506D496D2B32E18500B38868 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D496C2B32E18500B38868 /* AppDIContainer.swift */; };
+		506D496F2B34702200B38868 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D496E2B34702200B38868 /* NetworkSessionManager.swift */; };
+		506D49712B34704E00B38868 /* ErrorResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49702B34704E00B38868 /* ErrorResolver.swift */; };
+		506D49732B34709400B38868 /* Request+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49722B34709400B38868 /* Request+Extension.swift */; };
+		506D49762B34716400B38868 /* DefaultTouristsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49752B34716400B38868 /* DefaultTouristsRepository.swift */; };
+		506D49782B34718600B38868 /* TouristsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49772B34718600B38868 /* TouristsRepository.swift */; };
+		506D497A2B34733B00B38868 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49792B34733B00B38868 /* Cancellable.swift */; };
+		506D497F2B347AB300B38868 /* TouristListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D497E2B347AB300B38868 /* TouristListViewModel.swift */; };
+		506D49822B347CFC00B38868 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49812B347CFC00B38868 /* APIEndpoints.swift */; };
+		506D49852B347D4F00B38868 /* TouristListApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49842B347D4F00B38868 /* TouristListApiModel.swift */; };
+		506D49882B34800100B38868 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49872B34800100B38868 /* Constant.swift */; };
+		506D498A2B34808A00B38868 /* TouristsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49892B34808A00B38868 /* TouristsRequestModel.swift */; };
+		506D498D2B34821D00B38868 /* TouristListApiModel+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D498C2B34821D00B38868 /* TouristListApiModel+Mapping.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +73,18 @@
 		506D49682B32D71700B38868 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		506D496A2B32E11200B38868 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		506D496C2B32E18500B38868 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		506D496E2B34702200B38868 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
+		506D49702B34704E00B38868 /* ErrorResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResolver.swift; sourceTree = "<group>"; };
+		506D49722B34709400B38868 /* Request+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+Extension.swift"; sourceTree = "<group>"; };
+		506D49752B34716400B38868 /* DefaultTouristsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTouristsRepository.swift; sourceTree = "<group>"; };
+		506D49772B34718600B38868 /* TouristsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristsRepository.swift; sourceTree = "<group>"; };
+		506D49792B34733B00B38868 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
+		506D497E2B347AB300B38868 /* TouristListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristListViewModel.swift; sourceTree = "<group>"; };
+		506D49812B347CFC00B38868 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
+		506D49842B347D4F00B38868 /* TouristListApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristListApiModel.swift; sourceTree = "<group>"; };
+		506D49872B34800100B38868 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		506D49892B34808A00B38868 /* TouristsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristsRequestModel.swift; sourceTree = "<group>"; };
+		506D498C2B34821D00B38868 /* TouristListApiModel+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TouristListApiModel+Mapping.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +135,7 @@
 		506D492C2B32AD2200B38868 /* TravellerBuddy-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				506D49742B34713F00B38868 /* Data */,
 				506D49612B32AD7C00B38868 /* Common */,
 				506D49602B32AD6A00B38868 /* Infrastructure */,
 				506D495F2B32AD6000B38868 /* Domain */,
@@ -163,6 +188,8 @@
 		506D495F2B32AD6000B38868 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				506D497D2B347AA400B38868 /* Models */,
+				506D497B2B34740B00B38868 /* Repositories */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -172,8 +199,11 @@
 			children = (
 				506D49622B32AF9700B38868 /* NetworkConfig.swift */,
 				506D49642B32B07300B38868 /* DataTransferService.swift */,
+				506D49722B34709400B38868 /* Request+Extension.swift */,
+				506D49702B34704E00B38868 /* ErrorResolver.swift */,
 				506D49682B32D71700B38868 /* Endpoint.swift */,
 				506D49662B32C55D00B38868 /* NetworkService.swift */,
+				506D496E2B34702200B38868 /* NetworkSessionManager.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -181,8 +211,70 @@
 		506D49612B32AD7C00B38868 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				506D49792B34733B00B38868 /* Cancellable.swift */,
+				506D49872B34800100B38868 /* Constant.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		506D49742B34713F00B38868 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				506D498B2B3481EB00B38868 /* DataMapping */,
+				506D49832B347D3300B38868 /* ApiModels */,
+				506D49802B347CE800B38868 /* Network */,
+				506D497C2B34743A00B38868 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		506D497B2B34740B00B38868 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				506D49772B34718600B38868 /* TouristsRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		506D497C2B34743A00B38868 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				506D49752B34716400B38868 /* DefaultTouristsRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		506D497D2B347AA400B38868 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				506D497E2B347AB300B38868 /* TouristListViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		506D49802B347CE800B38868 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				506D49812B347CFC00B38868 /* APIEndpoints.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		506D49832B347D3300B38868 /* ApiModels */ = {
+			isa = PBXGroup;
+			children = (
+				506D49842B347D4F00B38868 /* TouristListApiModel.swift */,
+				506D49892B34808A00B38868 /* TouristsRequestModel.swift */,
+			);
+			path = ApiModels;
+			sourceTree = "<group>";
+		};
+		506D498B2B3481EB00B38868 /* DataMapping */ = {
+			isa = PBXGroup;
+			children = (
+				506D498C2B34821D00B38868 /* TouristListApiModel+Mapping.swift */,
+			);
+			path = DataMapping;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,15 +408,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				506D497A2B34733B00B38868 /* Cancellable.swift in Sources */,
 				506D49692B32D71700B38868 /* Endpoint.swift in Sources */,
+				506D49732B34709400B38868 /* Request+Extension.swift in Sources */,
 				506D49322B32AD2200B38868 /* ViewController.swift in Sources */,
+				506D49762B34716400B38868 /* DefaultTouristsRepository.swift in Sources */,
+				506D49822B347CFC00B38868 /* APIEndpoints.swift in Sources */,
 				506D496B2B32E11200B38868 /* AppConfiguration.swift in Sources */,
 				506D492E2B32AD2200B38868 /* AppDelegate.swift in Sources */,
+				506D49882B34800100B38868 /* Constant.swift in Sources */,
+				506D497F2B347AB300B38868 /* TouristListViewModel.swift in Sources */,
 				506D49632B32AF9700B38868 /* NetworkConfig.swift in Sources */,
 				506D49302B32AD2200B38868 /* SceneDelegate.swift in Sources */,
+				506D498A2B34808A00B38868 /* TouristsRequestModel.swift in Sources */,
+				506D498D2B34821D00B38868 /* TouristListApiModel+Mapping.swift in Sources */,
+				506D49782B34718600B38868 /* TouristsRepository.swift in Sources */,
 				506D49672B32C55D00B38868 /* NetworkService.swift in Sources */,
+				506D49852B347D4F00B38868 /* TouristListApiModel.swift in Sources */,
+				506D496F2B34702200B38868 /* NetworkSessionManager.swift in Sources */,
 				506D49652B32B07300B38868 /* DataTransferService.swift in Sources */,
 				506D496D2B32E18500B38868 /* AppDIContainer.swift in Sources */,
+				506D49712B34704E00B38868 /* ErrorResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

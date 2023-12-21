@@ -7,51 +7,6 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case error(statusCode: Int, data: Data?)
-    case notConnected
-    case cancelled
-    case generic(Error)
-    case urlGeneration
-}
-
-enum DataTransferError: Error {
-    case noResponse
-    case parsing(Error)
-    case networkFailure(NetworkError)
-    case resolvedNetworkFailure(Error)
-}
-
-//TODO: move this request related to different file
-enum HTTPMethodType: String {
-    case get = "GET"
-    case post = "POST"
-}
-
-protocol ResponseDecoder {
-    func decode<T: Decodable>(_ data: Data) throws -> T
-}
-
-protocol NetworkCancellable {
-    func cancel()
-}
-
-protocol Requestable {
-    var path: String { get }
-    var method: HTTPMethodType { get }
-    var headerParameters: [String: String] { get }
-    var queryParameters: [String: Any] { get }
-    var bodyParamters: [String: Any] { get }
-    var isFullPath: Bool { get }
-    
-    func urlRequest(with networkConfig: NetworkConfigurable) throws -> URLRequest
-}
-
-protocol ResponseRequestable: Requestable {
-    associatedtype Response
-    var responseDecoder: ResponseDecoder { get }
-}
-
 protocol DataTransferService {
      typealias CompletionHandler<T> = (Result<T, DataTransferError>) -> Void
     
@@ -119,15 +74,13 @@ final class DefaultDataTransferService: DataTransferService {
     }
 }
 
-protocol DatatransferErrorResolver {
-    func resolve(error: NetworkError) -> Error
-}
-
-final class DefaultDataTransferErrorResolver: DatatransferErrorResolver {
+class JSONResponseDecoder: ResponseDecoder {
+    
+    private let jsonDecoder = JSONDecoder()
     
     init() { }
     
-    func resolve(error: NetworkError) -> Error {
-        return error
+    func decode<T>(_ data: Data) throws -> T where T : Decodable {
+        return try jsonDecoder.decode(T.self, from: data)
     }
 }
