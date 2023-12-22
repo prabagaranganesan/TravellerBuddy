@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		506D492E2B32AD2200B38868 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D492D2B32AD2200B38868 /* AppDelegate.swift */; };
-		506D49302B32AD2200B38868 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D492F2B32AD2200B38868 /* SceneDelegate.swift */; };
-		506D49322B32AD2200B38868 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49312B32AD2200B38868 /* ViewController.swift */; };
-		506D49352B32AD2200B38868 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506D49332B32AD2200B38868 /* Main.storyboard */; };
 		506D49372B32AD2300B38868 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 506D49362B32AD2300B38868 /* Assets.xcassets */; };
 		506D493A2B32AD2300B38868 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 506D49382B32AD2300B38868 /* LaunchScreen.storyboard */; };
 		506D49452B32AD2300B38868 /* TravellerBuddy_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49442B32AD2300B38868 /* TravellerBuddy_iOSTests.swift */; };
@@ -34,6 +31,11 @@
 		506D49882B34800100B38868 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49872B34800100B38868 /* Constant.swift */; };
 		506D498A2B34808A00B38868 /* TouristsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49892B34808A00B38868 /* TouristsRequestModel.swift */; };
 		506D498D2B34821D00B38868 /* TouristListApiModel+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D498C2B34821D00B38868 /* TouristListApiModel+Mapping.swift */; };
+		506D49922B3490A200B38868 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49912B3490A200B38868 /* HomeViewController.swift */; };
+		506D49952B34916F00B38868 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49942B34916F00B38868 /* UIViewExtensions.swift */; };
+		506D499A2B3525A800B38868 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49992B3525A800B38868 /* RootCoordinator.swift */; };
+		506D499C2B353D0500B38868 /* PlacesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D499B2B353D0500B38868 /* PlacesListView.swift */; };
+		506D499E2B35404800B38868 /* PlacesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D499D2B35404800B38868 /* PlacesListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +58,6 @@
 /* Begin PBXFileReference section */
 		506D492A2B32AD2200B38868 /* TravellerBuddy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TravellerBuddy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		506D492D2B32AD2200B38868 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		506D492F2B32AD2200B38868 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		506D49312B32AD2200B38868 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		506D49342B32AD2200B38868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		506D49362B32AD2300B38868 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		506D49392B32AD2300B38868 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		506D493B2B32AD2300B38868 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +84,11 @@
 		506D49872B34800100B38868 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		506D49892B34808A00B38868 /* TouristsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouristsRequestModel.swift; sourceTree = "<group>"; };
 		506D498C2B34821D00B38868 /* TouristListApiModel+Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TouristListApiModel+Mapping.swift"; sourceTree = "<group>"; };
+		506D49912B3490A200B38868 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		506D49942B34916F00B38868 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		506D49992B3525A800B38868 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		506D499B2B353D0500B38868 /* PlacesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListView.swift; sourceTree = "<group>"; };
+		506D499D2B35404800B38868 /* PlacesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 		506D492C2B32AD2200B38868 /* TravellerBuddy-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				506D49962B35258000B38868 /* Coordinators */,
 				506D49742B34713F00B38868 /* Data */,
 				506D49612B32AD7C00B38868 /* Common */,
 				506D49602B32AD6A00B38868 /* Infrastructure */,
@@ -142,9 +147,6 @@
 				506D495E2B32AD4D00B38868 /* Presentation */,
 				506D495D2B32AD4100B38868 /* Application */,
 				506D492D2B32AD2200B38868 /* AppDelegate.swift */,
-				506D492F2B32AD2200B38868 /* SceneDelegate.swift */,
-				506D49312B32AD2200B38868 /* ViewController.swift */,
-				506D49332B32AD2200B38868 /* Main.storyboard */,
 				506D49362B32AD2300B38868 /* Assets.xcassets */,
 				506D49382B32AD2300B38868 /* LaunchScreen.storyboard */,
 				506D493B2B32AD2300B38868 /* Info.plist */,
@@ -181,6 +183,7 @@
 		506D495E2B32AD4D00B38868 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				506D49902B34909000B38868 /* Views */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 		506D49612B32AD7C00B38868 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				506D49932B34915C00B38868 /* Extensions */,
 				506D49792B34733B00B38868 /* Cancellable.swift */,
 				506D49872B34800100B38868 /* Constant.swift */,
 			);
@@ -275,6 +279,32 @@
 				506D498C2B34821D00B38868 /* TouristListApiModel+Mapping.swift */,
 			);
 			path = DataMapping;
+			sourceTree = "<group>";
+		};
+		506D49902B34909000B38868 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				506D49912B3490A200B38868 /* HomeViewController.swift */,
+				506D499B2B353D0500B38868 /* PlacesListView.swift */,
+				506D499D2B35404800B38868 /* PlacesListCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		506D49932B34915C00B38868 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				506D49942B34916F00B38868 /* UIViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		506D49962B35258000B38868 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				506D49992B3525A800B38868 /* RootCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,7 +413,6 @@
 			files = (
 				506D493A2B32AD2300B38868 /* LaunchScreen.storyboard in Resources */,
 				506D49372B32AD2300B38868 /* Assets.xcassets in Resources */,
-				506D49352B32AD2200B38868 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,16 +439,18 @@
 			files = (
 				506D497A2B34733B00B38868 /* Cancellable.swift in Sources */,
 				506D49692B32D71700B38868 /* Endpoint.swift in Sources */,
+				506D499E2B35404800B38868 /* PlacesListCell.swift in Sources */,
 				506D49732B34709400B38868 /* Request+Extension.swift in Sources */,
-				506D49322B32AD2200B38868 /* ViewController.swift in Sources */,
+				506D499A2B3525A800B38868 /* RootCoordinator.swift in Sources */,
+				506D49952B34916F00B38868 /* UIViewExtensions.swift in Sources */,
 				506D49762B34716400B38868 /* DefaultTouristsRepository.swift in Sources */,
 				506D49822B347CFC00B38868 /* APIEndpoints.swift in Sources */,
 				506D496B2B32E11200B38868 /* AppConfiguration.swift in Sources */,
+				506D49922B3490A200B38868 /* HomeViewController.swift in Sources */,
 				506D492E2B32AD2200B38868 /* AppDelegate.swift in Sources */,
 				506D49882B34800100B38868 /* Constant.swift in Sources */,
 				506D497F2B347AB300B38868 /* TouristListViewModel.swift in Sources */,
 				506D49632B32AF9700B38868 /* NetworkConfig.swift in Sources */,
-				506D49302B32AD2200B38868 /* SceneDelegate.swift in Sources */,
 				506D498A2B34808A00B38868 /* TouristsRequestModel.swift in Sources */,
 				506D498D2B34821D00B38868 /* TouristListApiModel+Mapping.swift in Sources */,
 				506D49782B34718600B38868 /* TouristsRepository.swift in Sources */,
@@ -428,6 +459,7 @@
 				506D496F2B34702200B38868 /* NetworkSessionManager.swift in Sources */,
 				506D49652B32B07300B38868 /* DataTransferService.swift in Sources */,
 				506D496D2B32E18500B38868 /* AppDIContainer.swift in Sources */,
+				506D499C2B353D0500B38868 /* PlacesListView.swift in Sources */,
 				506D49712B34704E00B38868 /* ErrorResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,14 +497,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		506D49332B32AD2200B38868 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				506D49342B32AD2200B38868 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		506D49382B32AD2300B38868 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -609,7 +633,6 @@
 				INFOPLIST_FILE = "TravellerBuddy-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -636,7 +659,6 @@
 				INFOPLIST_FILE = "TravellerBuddy-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
