@@ -13,6 +13,7 @@ enum HTTPMethodType: String {
 }
 
 protocol ResponseDecoder {
+    var keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy { get }
     func decode<T: Decodable>(_ data: Data) throws -> T
 }
 

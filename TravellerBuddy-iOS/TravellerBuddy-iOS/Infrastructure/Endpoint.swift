@@ -24,8 +24,9 @@ class Endpoint<R>: ResponseRequestable {
          headerParameters: [String: String],
          queryParameters: [String: Any],
          bodyParamters: [String: Any],
-         responseDecoder: ResponseDecoder = JSONResponseDecoder(),
-         isFullPath: Bool = false) {
+         responseDecoder: ResponseDecoder = JSONResponseDecoder(keyDecodingStrategy: .convertFromSnakeCase),
+         isFullPath: Bool = false
+    ) {
         self.path = path
         self.method = method
         self.headerParameters = headerParameters

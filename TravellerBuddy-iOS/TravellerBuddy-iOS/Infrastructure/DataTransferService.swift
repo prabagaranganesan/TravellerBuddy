@@ -76,12 +76,16 @@ final class DefaultDataTransferService: DataTransferService {
 
 class JSONResponseDecoder: ResponseDecoder {
     
+    let keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy
+    
     private let jsonDecoder = JSONDecoder()
     
-    init() { }
+    init(keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy) {
+        self.keyDecodingStrategy = keyDecodingStrategy
+    }
     
     func decode<T>(_ data: Data) throws -> T where T : Decodable {
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+        jsonDecoder.keyDecodingStrategy = keyDecodingStrategy
         return try jsonDecoder.decode(T.self, from: data)
     }
 }
