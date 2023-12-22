@@ -8,17 +8,17 @@
 import Foundation
 
 protocol NetworkConfigurable {
-    var baseURL: URL { get }
+    var baseURL: URL? { get }
     var headers: [String: String] { get }
     var queryParameters: [String: String] { get }
 }
 
 final class ApiDataNetworkConfig: NetworkConfigurable {
-    var baseURL: URL
+    var baseURL: URL?
     var headers: [String : String]
     var queryParameters: [String : String]
     
-    init(baseURL: URL,
+    init(baseURL: URL?,
          headers: [String : String],
          queryParameters: [String : String]) {
         self.baseURL = baseURL

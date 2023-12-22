@@ -39,12 +39,14 @@ protocol ResponseRequestable: Requestable {
 
 enum RequestGenerationError: Error {
     case components
+    case invalidURL
 }
 
 extension Requestable {
     
     func url(with config: NetworkConfigurable) throws -> URL {
-        let baseURL = config.baseURL.absoluteString.last != "/" ? config.baseURL.absoluteString + "/" : config.baseURL.absoluteString
+        guard let url = config.baseURL else { throw RequestGenerationError.invalidURL }
+        let baseURL = url.absoluteString.last != "/" ? url.absoluteString + "/" : url.absoluteString
         
         let endpoint = isFullPath ? path : baseURL.appending(path)
         
