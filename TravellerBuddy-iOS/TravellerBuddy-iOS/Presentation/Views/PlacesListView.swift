@@ -22,7 +22,10 @@ final class PlacesListView: UIView {
         return collection
     }()
     
-    init() {
+    private let viewModel: IPlacesListViewModel
+    
+    init(viewModel: IPlacesListViewModel) {
+        self.viewModel = viewModel
         super.init(frame: .zero)
         setupView()
         setupCollectionView()
@@ -54,19 +57,24 @@ final class PlacesListView: UIView {
         collectionView.delegate = self
         collectionView.register(PlacesListCell.self, forCellWithReuseIdentifier: PlacesListCell.defaultReuseIdentifier)
     }
+    
+    func refreshView(with data: [PlacesListItemUIModel]) {
+        viewModel.updateData(viewModel: data)
+        collectionView.reloadData()
+    }
 }
 
 extension PlacesListView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4//TODO: move to viewmodel
+        return viewModel.numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlacesListCell.defaultReuseIdentifier, for: indexPath) as? PlacesListCell else { return UICollectionViewCell()
         }
-        
-        //cell.display(viewModel: T##PlacessListCellViewModel)
+        let item = viewModel.getItem(for: indexPath.row)
+        cell.display(viewModel: item)
         return cell
     }
 }
@@ -83,5 +91,31 @@ extension PlacesListView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 8, right: 8)
+    }
+}
+
+protocol IPlacesListViewModel {
+    var numberOfItems: Int { get }
+    func getItem(for index: Int) -> PlacesListItemUIModel?
+    func updateData(viewModel: [PlacesListItemUIModel])
+}
+
+final class PlacesListViewModel: IPlacesListViewModel {
+    
+    private var items: [PlacesListItemUIModel] = []
+    
+    var numberOfItems: Int {
+        return items.count
+    }
+    
+    func getItem(for index: Int) -> PlacesListItemUIModel? {
+        guard !(index >= items.count) else {
+            return nil
+        }
+        return items[index]
+    }
+    
+    func updateData(viewModel: [PlacesListItemUIModel]) {
+        self.items = viewModel
     }
 }

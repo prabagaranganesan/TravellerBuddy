@@ -36,6 +36,7 @@
 		506D499A2B3525A800B38868 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49992B3525A800B38868 /* RootCoordinator.swift */; };
 		506D499C2B353D0500B38868 /* PlacesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D499B2B353D0500B38868 /* PlacesListView.swift */; };
 		506D499E2B35404800B38868 /* PlacesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D499D2B35404800B38868 /* PlacesListCell.swift */; };
+		506D49A12B35732800B38868 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49A02B35732800B38868 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		506D49992B3525A800B38868 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		506D499B2B353D0500B38868 /* PlacesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListView.swift; sourceTree = "<group>"; };
 		506D499D2B35404800B38868 /* PlacesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListCell.swift; sourceTree = "<group>"; };
+		506D49A02B35732800B38868 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 		506D495E2B32AD4D00B38868 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				506D499F2B35730800B38868 /* ViewModels */,
 				506D49902B34909000B38868 /* Views */,
 			);
 			path = Presentation;
@@ -305,6 +308,14 @@
 				506D49992B3525A800B38868 /* RootCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		506D499F2B35730800B38868 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				506D49A02B35732800B38868 /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +451,7 @@
 				506D497A2B34733B00B38868 /* Cancellable.swift in Sources */,
 				506D49692B32D71700B38868 /* Endpoint.swift in Sources */,
 				506D499E2B35404800B38868 /* PlacesListCell.swift in Sources */,
+				506D49A12B35732800B38868 /* HomeViewModel.swift in Sources */,
 				506D49732B34709400B38868 /* Request+Extension.swift in Sources */,
 				506D499A2B3525A800B38868 /* RootCoordinator.swift in Sources */,
 				506D49952B34916F00B38868 /* UIViewExtensions.swift in Sources */,

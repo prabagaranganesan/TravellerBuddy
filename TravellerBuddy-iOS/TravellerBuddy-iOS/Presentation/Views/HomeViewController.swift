@@ -27,15 +27,30 @@ class HomeViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var placeItemViewModel: PlacesListViewModel = PlacesListViewModel()
+    
     private lazy var placesListView: PlacesListView = {
-        let view: PlacesListView = PlacesListView()
+        let view: PlacesListView = PlacesListView(viewModel: placeItemViewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
+    private var viewModel: IHomeViewModel
+    
+    init(viewModel: IHomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.green
+        bindViewModel()
+        viewModel.fetchInitialVacationPlaces()
     }
     
     override func loadView() {
@@ -68,7 +83,14 @@ class HomeViewController: UIViewController {
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
-        
         ])
+    }
+    
+    private func bindViewModel() {
+        viewModel.refreshPlaces = { [weak self] viewModel in
+            DispatchQueue.main.async { //TODO: move to repository or viewmodel
+                self?.placesListView.refreshView(with: viewModel.items)
+            }
+        }
     }
 }

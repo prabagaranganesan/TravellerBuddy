@@ -10,7 +10,7 @@ import Foundation
 final class AppConfiguration {
     let apiKey: String = "Api key"
     
-    let apiBaseURL: String = "base url"
+    let apiBaseURL: String = "https://api.unsplash.com"
     
     let imageBaseURL: String = "Image base url"
 }

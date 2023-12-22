@@ -9,12 +9,13 @@ import Foundation
 
 struct APIEndpoints {
     
-    static func getTouristsList(pageNumber: Int) -> Endpoint<TouristListApiModel> {
+    static func getTouristsList(query: String, pageNumber: Int) -> Endpoint<TouristListApiModel> {
         let queryParameters = ["page": "\(pageNumber)",
-                               "client_id": Constant.Api.apiKey
+                               "client_id": Constant.Api.apiKey,
+                               "query": query
                               ]
         
-        return Endpoint(path: "/search/photos",
+        return Endpoint(path: "search/photos",
                         method: .get,
                         headerParameters: ["Accept": "application/json"],
                         queryParameters: queryParameters,

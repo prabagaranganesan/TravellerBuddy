@@ -81,6 +81,7 @@ class JSONResponseDecoder: ResponseDecoder {
     init() { }
     
     func decode<T>(_ data: Data) throws -> T where T : Decodable {
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         return try jsonDecoder.decode(T.self, from: data)
     }
 }

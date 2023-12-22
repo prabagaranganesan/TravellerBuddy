@@ -18,7 +18,10 @@ final class RootCoordinator {
     }
     
     func start() {
-        let homeViewController = HomeViewController(nibName: nil, bundle: nil)
+        //TODO: move to factory class
+        let touristReposiotry = DefaultTouristsRepository(dataTransferService: appDIController.apiDataTransferService)
+        let viewModel = HomeViewModel(repository: touristReposiotry)
+        let homeViewController = HomeViewController(viewModel: viewModel)
         navigationController.pushViewController(homeViewController, animated: true)
     }
 }

@@ -12,6 +12,7 @@ struct TouristQuery: Equatable {
 }
 
 protocol TouristsRepository  {
+    @discardableResult
     func fetchTouristsList(
         query: TouristQuery,
         page: Int,

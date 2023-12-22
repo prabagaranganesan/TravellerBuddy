@@ -15,7 +15,7 @@ final class DefaultTouristsRepository: TouristsRepository {
     }
     
     func fetchTouristsList(query: TouristQuery, page: Int, cached: @escaping (TouristListViewModel) -> Void, completion: @escaping (Result<TouristListViewModel, Error>) -> Void) -> Cancellable? {
-        let endpoint = APIEndpoints.getTouristsList(pageNumber: page)
+        let endpoint = APIEndpoints.getTouristsList(query: query.query, pageNumber: page)
         let task = RepositoryTask()
         
         guard !task.isCancelled else { return nil }

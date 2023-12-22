@@ -9,4 +9,10 @@ import Foundation
 
 struct TouristListViewModel: Equatable {
     
+    let items: [PlacesListItemUIModel]
+}
+
+struct PlacesListItemUIModel: Equatable {
+    let title: String?
+    let imagePath: String?
 }

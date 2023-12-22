@@ -9,6 +9,12 @@ import Foundation
 
 extension TouristListApiModel {
     func toDomain() -> TouristListViewModel {
-        return TouristListViewModel()
+        return TouristListViewModel(items: self.results.map( { $0.toDomain() }))
+    }
+}
+
+extension PlacesListApiModel {
+    func toDomain() -> PlacesListItemUIModel {
+        return PlacesListItemUIModel(title: self.altDescription, imagePath: self.urls?.small)
     }
 }

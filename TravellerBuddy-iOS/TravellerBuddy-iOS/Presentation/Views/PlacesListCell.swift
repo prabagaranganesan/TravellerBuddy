@@ -67,7 +67,8 @@ final class PlacesListCell: UICollectionViewCell {
         ])
     }
     
-    func display(viewModel: PlacessListCellViewModel) {
+    func display(viewModel: PlacesListItemUIModel?) {
+        guard let viewModel = viewModel else { return }
         titleLabel.text = viewModel.title
         //TODO: set image
     }
