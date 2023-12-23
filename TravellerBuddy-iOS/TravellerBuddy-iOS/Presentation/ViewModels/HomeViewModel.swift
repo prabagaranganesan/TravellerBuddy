@@ -9,6 +9,7 @@ import Foundation
 
 protocol IHomeViewModel {
     var refreshPlaces: (TouristListViewModel) -> Void { get set }
+    var categories: [CategoryItemViewModel] { get }
     var sectionHeaderViewModel: SectionHeaderViewModel { get }
     func fetchInitialVacationPlaces()
     
@@ -46,5 +47,13 @@ final class HomeViewModel: IHomeViewModel {
     
     var sectionHeaderViewModel: SectionHeaderViewModel {
         return SectionHeaderViewModel(title: "Recommended", ctaName: "Explore")
+    }
+    
+    var categories: [CategoryItemViewModel] {
+        let beachCategory = CategoryItemViewModel(title: "Beach", imageName: "beach_cat")
+        let mountaintCategory = CategoryItemViewModel(title: "Mountain", imageName: "falls_cat")
+        let waterFallsCategory = CategoryItemViewModel(title: "Water Falls", imageName: "mountain_cat")
+        let forestCategory = CategoryItemViewModel(title: "Forests", imageName: "Forest")
+        return [beachCategory, mountaintCategory, waterFallsCategory, forestCategory]
     }
 }

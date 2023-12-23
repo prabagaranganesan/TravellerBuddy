@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
     private lazy var stackView: UIStackView = {
         let stackView: UIStackView = UIStackView.construct()
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = 16
         return stackView
     }()
     
@@ -31,6 +31,12 @@ class HomeViewController: UIViewController {
     
     private lazy var placesListView: PlacesListView = {
         let view: PlacesListView = PlacesListView(viewModel: placeItemViewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var categoryListView: CategoryListView = {
+        let view: CategoryListView = CategoryListView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -65,7 +71,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupView() {
-        [sectionHeaderView, placesListView].forEach({ stackView.addArrangedSubview($0) })
+        [categoryListView, sectionHeaderView, placesListView].forEach({ stackView.addArrangedSubview($0) })
         contentView.addSubview(stackView)
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
@@ -98,6 +104,7 @@ class HomeViewController: UIViewController {
                 guard let self = self else { return }
                 self.placesListView.refreshView(with: viewModel.items)
                 self.sectionHeaderView.display(viewModel: self.viewModel.sectionHeaderViewModel)
+                self.categoryListView.refreshView(with: self.viewModel.categories)
             }
         }
     }
