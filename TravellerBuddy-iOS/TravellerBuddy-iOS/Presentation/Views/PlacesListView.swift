@@ -47,7 +47,7 @@ final class PlacesListView: UIView {
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             collectionView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 16),
-            collectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.5)
+            collectionView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.5 - 8)
         ])
     }
     
@@ -81,7 +81,7 @@ extension PlacesListView: UICollectionViewDataSource, UICollectionViewDelegate {
 extension PlacesListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width / 1.7
-        return CGSize(width: width - 32, height: UIScreen.main.bounds.width / 1.5)
+        return CGSize(width: width - 32, height: UIScreen.main.bounds.width / 1.5 - 8)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

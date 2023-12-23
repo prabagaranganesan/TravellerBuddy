@@ -27,13 +27,6 @@ final class PlacesListCell: UICollectionViewCell {
         return view
     }()
     
-    private var descriptionStackView: UIStackView = {
-        let stackView: UIStackView = UIStackView.construct()
-        stackView.distribution = .equalSpacing
-        stackView.axis = .horizontal
-        return stackView
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -45,7 +38,7 @@ final class PlacesListCell: UICollectionViewCell {
     
     private func setupUI() {
         self.contentView.backgroundColor = .white
-        contentView.addSubviews(imageView, titleLabel, descriptionStackView)
+        contentView.addSubviews(imageView, titleLabel)
         applyConstraints()
         applyCornerRadius()
     }
@@ -62,11 +55,7 @@ final class PlacesListCell: UICollectionViewCell {
             
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            titleLabel.bottomAnchor.constraint(equalTo: descriptionStackView.topAnchor, constant: -8),
-            
-            descriptionStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            descriptionStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            descriptionStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
         ])
     }
     

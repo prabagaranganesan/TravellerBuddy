@@ -40,6 +40,7 @@
 		506D49A72B367C3900B38868 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49A62B367C3900B38868 /* ImageDownloader.swift */; };
 		506D49A92B368AFA00B38868 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49A82B368AFA00B38868 /* UIImageViewExtensions.swift */; };
 		506D49AB2B36B53600B38868 /* PlacesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49AA2B36B53600B38868 /* PlacesSectionHeaderView.swift */; };
+		506D49AD2B37148E00B38868 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49AC2B37148E00B38868 /* CategoryListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		506D49A62B367C3900B38868 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		506D49A82B368AFA00B38868 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		506D49AA2B36B53600B38868 /* PlacesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesSectionHeaderView.swift; sourceTree = "<group>"; };
+		506D49AC2B37148E00B38868 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 			children = (
 				506D49912B3490A200B38868 /* HomeViewController.swift */,
 				506D499B2B353D0500B38868 /* PlacesListView.swift */,
+				506D49AC2B37148E00B38868 /* CategoryListView.swift */,
 				506D49AA2B36B53600B38868 /* PlacesSectionHeaderView.swift */,
 				506D499D2B35404800B38868 /* PlacesListCell.swift */,
 			);
@@ -482,6 +485,7 @@
 				506D49852B347D4F00B38868 /* TouristListApiModel.swift in Sources */,
 				506D496F2B34702200B38868 /* NetworkSessionManager.swift in Sources */,
 				506D49652B32B07300B38868 /* DataTransferService.swift in Sources */,
+				506D49AD2B37148E00B38868 /* CategoryListView.swift in Sources */,
 				506D496D2B32E18500B38868 /* AppDIContainer.swift in Sources */,
 				506D499C2B353D0500B38868 /* PlacesListView.swift in Sources */,
 				506D49712B34704E00B38868 /* ErrorResolver.swift in Sources */,
