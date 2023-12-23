@@ -9,7 +9,9 @@ import Foundation
 
 protocol IHomeViewModel {
     var refreshPlaces: (TouristListViewModel) -> Void { get set }
+    var sectionHeaderViewModel: SectionHeaderViewModel { get }
     func fetchInitialVacationPlaces()
+    
 }
 
 
@@ -40,5 +42,9 @@ final class HomeViewModel: IHomeViewModel {
             }
         }
 
+    }
+    
+    var sectionHeaderViewModel: SectionHeaderViewModel {
+        return SectionHeaderViewModel(title: "Recommended", ctaName: "Explore")
     }
 }

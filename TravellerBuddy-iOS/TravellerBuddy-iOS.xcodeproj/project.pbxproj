@@ -39,6 +39,7 @@
 		506D49A12B35732800B38868 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49A02B35732800B38868 /* HomeViewModel.swift */; };
 		506D49A72B367C3900B38868 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49A62B367C3900B38868 /* ImageDownloader.swift */; };
 		506D49A92B368AFA00B38868 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49A82B368AFA00B38868 /* UIImageViewExtensions.swift */; };
+		506D49AB2B36B53600B38868 /* PlacesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49AA2B36B53600B38868 /* PlacesSectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		506D49A02B35732800B38868 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		506D49A62B367C3900B38868 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		506D49A82B368AFA00B38868 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
+		506D49AA2B36B53600B38868 /* PlacesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesSectionHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 			children = (
 				506D49912B3490A200B38868 /* HomeViewController.swift */,
 				506D499B2B353D0500B38868 /* PlacesListView.swift */,
+				506D49AA2B36B53600B38868 /* PlacesSectionHeaderView.swift */,
 				506D499D2B35404800B38868 /* PlacesListCell.swift */,
 			);
 			path = Views;
@@ -459,6 +462,7 @@
 				506D49A72B367C3900B38868 /* ImageDownloader.swift in Sources */,
 				506D499E2B35404800B38868 /* PlacesListCell.swift in Sources */,
 				506D49A12B35732800B38868 /* HomeViewModel.swift in Sources */,
+				506D49AB2B36B53600B38868 /* PlacesSectionHeaderView.swift in Sources */,
 				506D49732B34709400B38868 /* Request+Extension.swift in Sources */,
 				506D499A2B3525A800B38868 /* RootCoordinator.swift in Sources */,
 				506D49952B34916F00B38868 /* UIViewExtensions.swift in Sources */,

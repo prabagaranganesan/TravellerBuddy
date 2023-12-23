@@ -14,11 +14,10 @@ final class PlacesListView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.showsHorizontalScrollIndicator = true
+        collection.showsHorizontalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.isScrollEnabled = true
         collection.backgroundColor = .clear
-        collection.showsVerticalScrollIndicator = false
         return collection
     }()
     
@@ -44,7 +43,7 @@ final class PlacesListView: UIView {
     private func applyConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
             collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             collectionView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 16),
@@ -81,8 +80,8 @@ extension PlacesListView: UICollectionViewDataSource, UICollectionViewDelegate {
 
 extension PlacesListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width / 2
-        return CGSize(width: width - 32, height: 200)
+        let width = UIScreen.main.bounds.width / 1.7
+        return CGSize(width: width - 32, height: UIScreen.main.bounds.width / 1.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -90,7 +89,7 @@ extension PlacesListView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 8, bottom: 8, right: 8)
+        return UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 8)
     }
 }
 

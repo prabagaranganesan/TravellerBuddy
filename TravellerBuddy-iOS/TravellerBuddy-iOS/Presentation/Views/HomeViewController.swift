@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
     private lazy var stackView: UIStackView = {
         let stackView: UIStackView = UIStackView.construct()
         stackView.axis = .vertical
-        stackView.spacing = 24
+        stackView.spacing = 8
         return stackView
     }()
     
@@ -31,6 +31,12 @@ class HomeViewController: UIViewController {
     
     private lazy var placesListView: PlacesListView = {
         let view: PlacesListView = PlacesListView(viewModel: placeItemViewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var sectionHeaderView: PlacesSectionHeaderView = {
+        let view: PlacesSectionHeaderView = PlacesSectionHeaderView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -48,7 +54,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.green
+        self.view.backgroundColor = UIColor.systemGray6
         bindViewModel()
         viewModel.fetchInitialVacationPlaces()
     }
@@ -59,7 +65,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupView() {
-        stackView.addArrangedSubview(placesListView)
+        [sectionHeaderView, placesListView].forEach({ stackView.addArrangedSubview($0) })
         contentView.addSubview(stackView)
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
@@ -89,7 +95,9 @@ class HomeViewController: UIViewController {
     private func bindViewModel() {
         viewModel.refreshPlaces = { [weak self] viewModel in
             DispatchQueue.main.async { //TODO: move to repository or viewmodel
-                self?.placesListView.refreshView(with: viewModel.items)
+                guard let self = self else { return }
+                self.placesListView.refreshView(with: viewModel.items)
+                self.sectionHeaderView.display(viewModel: self.viewModel.sectionHeaderViewModel)
             }
         }
     }
