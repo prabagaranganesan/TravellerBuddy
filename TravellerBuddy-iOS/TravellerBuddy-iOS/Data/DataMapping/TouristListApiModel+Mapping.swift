@@ -15,6 +15,6 @@ extension TouristListApiModel {
 
 extension PlacesListApiModel {
     func toDomain() -> PlacesListItemUIModel {
-        return PlacesListItemUIModel(title: self.altDescription, imagePath: self.urls?.small)
+        return PlacesListItemUIModel(title: self.altDescription, imagePath: self.urls?.thumb)
     }
 }

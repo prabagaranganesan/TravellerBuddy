@@ -21,4 +21,8 @@ struct APIEndpoints {
                         queryParameters: queryParameters,
                         bodyParamters: [:])
     }
+    
+    static func getPlacesImage(path: String) -> Endpoint<Data> {
+        return Endpoint(path: path, method: .get, headerParameters: [:], queryParameters: [:], bodyParamters: [:], isFullPath: true)
+    }
 }

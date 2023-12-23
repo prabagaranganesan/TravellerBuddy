@@ -37,6 +37,8 @@
 		506D499C2B353D0500B38868 /* PlacesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D499B2B353D0500B38868 /* PlacesListView.swift */; };
 		506D499E2B35404800B38868 /* PlacesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D499D2B35404800B38868 /* PlacesListCell.swift */; };
 		506D49A12B35732800B38868 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49A02B35732800B38868 /* HomeViewModel.swift */; };
+		506D49A72B367C3900B38868 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49A62B367C3900B38868 /* ImageDownloader.swift */; };
+		506D49A92B368AFA00B38868 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49A82B368AFA00B38868 /* UIImageViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		506D499B2B353D0500B38868 /* PlacesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListView.swift; sourceTree = "<group>"; };
 		506D499D2B35404800B38868 /* PlacesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListCell.swift; sourceTree = "<group>"; };
 		506D49A02B35732800B38868 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		506D49A62B367C3900B38868 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		506D49A82B368AFA00B38868 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +224,7 @@
 				506D49932B34915C00B38868 /* Extensions */,
 				506D49792B34733B00B38868 /* Cancellable.swift */,
 				506D49872B34800100B38868 /* Constant.swift */,
+				506D49A62B367C3900B38868 /* ImageDownloader.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				506D49942B34916F00B38868 /* UIViewExtensions.swift */,
+				506D49A82B368AFA00B38868 /* UIImageViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -450,6 +456,7 @@
 			files = (
 				506D497A2B34733B00B38868 /* Cancellable.swift in Sources */,
 				506D49692B32D71700B38868 /* Endpoint.swift in Sources */,
+				506D49A72B367C3900B38868 /* ImageDownloader.swift in Sources */,
 				506D499E2B35404800B38868 /* PlacesListCell.swift in Sources */,
 				506D49A12B35732800B38868 /* HomeViewModel.swift in Sources */,
 				506D49732B34709400B38868 /* Request+Extension.swift in Sources */,
@@ -460,6 +467,7 @@
 				506D496B2B32E11200B38868 /* AppConfiguration.swift in Sources */,
 				506D49922B3490A200B38868 /* HomeViewController.swift in Sources */,
 				506D492E2B32AD2200B38868 /* AppDelegate.swift in Sources */,
+				506D49A92B368AFA00B38868 /* UIImageViewExtensions.swift in Sources */,
 				506D49882B34800100B38868 /* Constant.swift in Sources */,
 				506D497F2B347AB300B38868 /* TouristListViewModel.swift in Sources */,
 				506D49632B32AF9700B38868 /* NetworkConfig.swift in Sources */,

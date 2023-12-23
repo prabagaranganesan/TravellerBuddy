@@ -10,10 +10,18 @@ import Foundation
 protocol DataTransferService {
      typealias CompletionHandler<T> = (Result<T, DataTransferError>) -> Void
     
+    @discardableResult
     func request<T: Decodable, E: ResponseRequestable>(with endpoint: E,
                                                        completion: @escaping CompletionHandler<T>) -> NetworkCancellable? where E.Response == T
+    @discardableResult
     func request<E: ResponseRequestable>(with endpoint: E,
                                          completion: @escaping CompletionHandler<Void>) -> NetworkCancellable? where E.Response == Void
+    
+    @discardableResult
+    func requestImageData<T, E>(
+        with endpoint: E,
+        completion: @escaping (Result<Data?, DataTransferError>) -> Void
+    ) -> NetworkCancellable? where T : Decodable, T == E.Response, E : ResponseRequestable
 }
 
 final class DefaultDataTransferService: DataTransferService {
@@ -51,6 +59,21 @@ final class DefaultDataTransferService: DataTransferService {
             switch result {
             case .success:
                 completion(.success(()))
+            case .failure(let error):
+                let error = self.resolve(networkError: error)
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func requestImageData<T, E>(
+        with endpoint: E,
+        completion: @escaping (Result<Data?, DataTransferError>) -> Void
+    ) -> NetworkCancellable? where T : Decodable, T == E.Response, E : ResponseRequestable {
+        networkService.request(endpoint: endpoint) { result in
+            switch result {
+            case .success(let data):
+                completion(.success(data))
             case .failure(let error):
                 let error = self.resolve(networkError: error)
                 completion(.failure(error))

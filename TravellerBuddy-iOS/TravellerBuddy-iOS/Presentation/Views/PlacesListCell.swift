@@ -70,6 +70,7 @@ final class PlacesListCell: UICollectionViewCell {
     func display(viewModel: PlacesListItemUIModel?) {
         guard let viewModel = viewModel else { return }
         titleLabel.text = viewModel.title
-        //TODO: set image
+        guard let imagePath = viewModel.imagePath, let url = URL(string: imagePath) else { return }
+        imageView.setImage(with: url)
     }
 }
