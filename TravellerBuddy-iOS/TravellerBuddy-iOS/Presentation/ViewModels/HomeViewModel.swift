@@ -11,10 +11,8 @@ protocol IHomeViewModel {
     var refreshPlaces: (TouristListViewModel) -> Void { get set }
     var categories: [CategoryItemViewModel] { get }
     var sectionHeaderViewModel: SectionHeaderViewModel { get }
-    func fetchInitialVacationPlaces()
-    
+    func fetchInitialVacationPlaces(queryText: String)
 }
-
 
 final class HomeViewModel: IHomeViewModel {
     
@@ -26,8 +24,8 @@ final class HomeViewModel: IHomeViewModel {
         self.repository = repository
     }
     
-    func fetchInitialVacationPlaces() {
-        let query = TouristQuery(query: "Beaches")
+    func fetchInitialVacationPlaces(queryText: String) {
+        let query = TouristQuery(query: queryText)
         repository.fetchTouristsList(query: query, page: pageCount) { cacheViewModel in
             //TODO: Handle cache data
             print(cacheViewModel)

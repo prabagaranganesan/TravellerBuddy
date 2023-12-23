@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     }()
     
     private lazy var categoryListView: CategoryListView = {
-        let view: CategoryListView = CategoryListView()
+        let view: CategoryListView = CategoryListView(delegate: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -62,7 +62,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.systemGray6
         bindViewModel()
-        viewModel.fetchInitialVacationPlaces()
+        loadInitialData()
+        viewModel.fetchInitialVacationPlaces(queryText: "Beaches")
     }
     
     override func loadView() {
@@ -98,14 +99,24 @@ class HomeViewController: UIViewController {
         ])
     }
     
+    private func loadInitialData() {
+        sectionHeaderView.display(viewModel: self.viewModel.sectionHeaderViewModel)
+        categoryListView.refreshView(with: self.viewModel.categories)
+    }
+    
     private func bindViewModel() {
         viewModel.refreshPlaces = { [weak self] viewModel in
             DispatchQueue.main.async { //TODO: move to repository or viewmodel
                 guard let self = self else { return }
                 self.placesListView.refreshView(with: viewModel.items)
-                self.sectionHeaderView.display(viewModel: self.viewModel.sectionHeaderViewModel)
-                self.categoryListView.refreshView(with: self.viewModel.categories)
             }
         }
+    }
+}
+
+extension HomeViewController: CategoryItemTapDelegate {
+    
+    func itemTapped(category: String) {
+        viewModel.fetchInitialVacationPlaces(queryText: category)
     }
 }

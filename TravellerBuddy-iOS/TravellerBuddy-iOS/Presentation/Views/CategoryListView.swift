@@ -13,6 +13,10 @@ struct CategoryItemViewModel {
     let imageName: String
 }
 
+protocol CategoryItemTapDelegate: AnyObject {
+    func itemTapped(category: String)
+}
+
 final class CategoryListView: UIView {
     
     private lazy var collectionView: UICollectionView = {
@@ -29,8 +33,10 @@ final class CategoryListView: UIView {
     }()
         
     private var items: [CategoryItemViewModel] = []
+    var delegate: CategoryItemTapDelegate?
     
-    init() {
+    init(delegate: CategoryItemTapDelegate?) {
+        self.delegate = delegate
         super.init(frame: .zero)
         setupView()
         setupCollectionView()
@@ -82,6 +88,11 @@ extension CategoryListView: UICollectionViewDataSource, UICollectionViewDelegate
         cell.display(viewModel: item)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedItem = items[indexPath.row]
+        delegate?.itemTapped(category: selectedItem.title)
+    }
 }
 
 extension CategoryListView: UICollectionViewDelegateFlowLayout {
@@ -109,7 +120,7 @@ final class CategoryItemCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                self.contentView.backgroundColor = UIColor(red: 64.00/255.00, green: 193.00/255.00, blue: 146.00/255.00, alpha: 1.00)
+                self.contentView.backgroundColor = UIColor(red: 64.00/255.00, green: 193.00/255.00, blue: 146.00/255.00, alpha: 1.00) //TODO: change to common color component
                 self.titleLabel.textColor = .white
             } else {
                 self.contentView.backgroundColor = .white
@@ -153,7 +164,7 @@ final class CategoryItemCell: UICollectionViewCell {
         self.layer.cornerRadius = 8
         
         self.imageView.clipsToBounds = true
-        self.imageView.layer.cornerRadius = 12
+        self.imageView.layer.cornerRadius = 15
     }
     
     func display(viewModel: CategoryItemViewModel) {
