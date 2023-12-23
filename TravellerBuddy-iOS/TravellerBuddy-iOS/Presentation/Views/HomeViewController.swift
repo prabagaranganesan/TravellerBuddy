@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
     private lazy var stackView: UIStackView = {
         let stackView: UIStackView = UIStackView.construct()
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 20
         return stackView
     }()
     
@@ -47,6 +47,26 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    private lazy var searchBar: UISearchBar = {
+        let searchBar: UISearchBar = UISearchBar(frame: .zero)
+        searchBar.searchBarStyle = .prominent
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.backgroundImage = UIImage()
+        searchBar.clipsToBounds = true
+        searchBar.delegate = self
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.searchTextField.backgroundColor = .clear
+        searchBar.placeholder = "Search destination..."
+        return searchBar
+    }()
+    
+    private lazy var searchbarContainer: UIView = {
+        let view: UIView = UIView.construct()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     private var viewModel: IHomeViewModel
     
     init(viewModel: IHomeViewModel) {
@@ -66,17 +86,26 @@ class HomeViewController: UIViewController {
         viewModel.fetchInitialVacationPlaces(queryText: "Beaches")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setupNavigationBar()
+    }
+    
     override func loadView() {
         view = UIView()
         setupView()
     }
     
     private func setupView() {
-        [categoryListView, sectionHeaderView, placesListView].forEach({ stackView.addArrangedSubview($0) })
+        searchbarContainer.addSubview(searchBar)
+        [searchbarContainer, categoryListView, sectionHeaderView, placesListView].forEach({ stackView.addArrangedSubview($0) })
         contentView.addSubview(stackView)
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
         applyConstrainst()
+        addSearchBarCornerRadius()
+        stackView.setCustomSpacing(0, after: searchbarContainer)
+        stackView.setCustomSpacing(24, after: categoryListView)
     }
     
     private func applyConstrainst() {
@@ -94,14 +123,38 @@ class HomeViewController: UIViewController {
             
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
+            
+            searchBar.leadingAnchor.constraint(equalTo: searchbarContainer.leadingAnchor, constant: 16),
+            searchBar.trailingAnchor.constraint(equalTo: searchbarContainer.trailingAnchor, constant: -16),
+            searchBar.topAnchor.constraint(equalTo: searchbarContainer.topAnchor, constant: 0),
+            searchBar.bottomAnchor.constraint(equalTo: searchbarContainer.bottomAnchor, constant: 0),
+            searchBar.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    private func addSearchBarCornerRadius() {
+        searchBar.layer.cornerRadius = 24
+        searchBar.layer.masksToBounds = true
     }
     
     private func loadInitialData() {
         sectionHeaderView.display(viewModel: self.viewModel.sectionHeaderViewModel)
         categoryListView.refreshView(with: self.viewModel.categories)
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.title = "Explore Places"
+        let bellButton = UIBarButtonItem(image: UIImage(systemName: "bell"), style: .plain, target: self, action: #selector(notificationTapped))
+        bellButton.tintColor = .darkGray
+        self.navigationItem.rightBarButtonItem  = bellButton
+    }
+    
+    @objc
+    private func notificationTapped() {
+        //TODO: handle tap action
     }
     
     private func bindViewModel() {
@@ -118,5 +171,11 @@ extension HomeViewController: CategoryItemTapDelegate {
     
     func itemTapped(category: String) {
         viewModel.fetchInitialVacationPlaces(queryText: category)
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
     }
 }
