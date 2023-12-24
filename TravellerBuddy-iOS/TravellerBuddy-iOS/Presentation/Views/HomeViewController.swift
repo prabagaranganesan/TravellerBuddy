@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 import UIKit
 
 class HomeViewController: UIViewController {
@@ -67,6 +68,22 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    //TODO: Move this map related view to different componen and bleow secion
+    lazy var mapView = {
+        let view: MKMapView = MKMapView()
+        let noLocation = CLLocationCoordinate2D(latitude: 13.0827, longitude: 80.2707)
+        let viewRegion = MKCoordinateRegion(center: noLocation, latitudinalMeters: 500, longitudinalMeters: 500)
+        view.setRegion(viewRegion, animated: false)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var mapHeaderView: PlacesSectionHeaderView = {
+        let view: PlacesSectionHeaderView = PlacesSectionHeaderView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private var viewModel: IHomeViewModel
     
     init(viewModel: IHomeViewModel) {
@@ -98,7 +115,7 @@ class HomeViewController: UIViewController {
     
     private func setupView() {
         searchbarContainer.addSubview(searchBar)
-        [searchbarContainer, categoryListView, sectionHeaderView, placesListView].forEach({ stackView.addArrangedSubview($0) })
+        [searchbarContainer, categoryListView, sectionHeaderView, placesListView, mapHeaderView, mapView].forEach({ stackView.addArrangedSubview($0) })
         contentView.addSubview(stackView)
         scrollView.addSubview(contentView)
         view.addSubview(scrollView)
@@ -106,6 +123,8 @@ class HomeViewController: UIViewController {
         addSearchBarCornerRadius()
         stackView.setCustomSpacing(0, after: searchbarContainer)
         stackView.setCustomSpacing(24, after: categoryListView)
+        stackView.setCustomSpacing(30, after: placesListView)
+        stackView.setCustomSpacing(24, after: mapHeaderView)
     }
     
     private func applyConstrainst() {
@@ -130,7 +149,9 @@ class HomeViewController: UIViewController {
             searchBar.trailingAnchor.constraint(equalTo: searchbarContainer.trailingAnchor, constant: -16),
             searchBar.topAnchor.constraint(equalTo: searchbarContainer.topAnchor, constant: 0),
             searchBar.bottomAnchor.constraint(equalTo: searchbarContainer.bottomAnchor, constant: 0),
-            searchBar.heightAnchor.constraint(equalToConstant: 50)
+            searchBar.heightAnchor.constraint(equalToConstant: 50),
+            
+            mapView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/2.4)
         ])
     }
     
@@ -142,6 +163,7 @@ class HomeViewController: UIViewController {
     private func loadInitialData() {
         sectionHeaderView.display(viewModel: self.viewModel.sectionHeaderViewModel)
         categoryListView.refreshView(with: self.viewModel.categories)
+        mapHeaderView.display(viewModel: viewModel.mapHeaderViewModel)
     }
     
     private func setupNavigationBar() {

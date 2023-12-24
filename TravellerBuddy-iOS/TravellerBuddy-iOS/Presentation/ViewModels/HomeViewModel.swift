@@ -11,6 +11,7 @@ protocol IHomeViewModel {
     var refreshPlaces: (TouristListViewModel) -> Void { get set }
     var categories: [CategoryItemViewModel] { get }
     var sectionHeaderViewModel: SectionHeaderViewModel { get }
+    var mapHeaderViewModel: SectionHeaderViewModel { get }
     func fetchInitialVacationPlaces(queryText: String)
 }
 
@@ -45,6 +46,10 @@ final class HomeViewModel: IHomeViewModel {
     
     var sectionHeaderViewModel: SectionHeaderViewModel {
         return SectionHeaderViewModel(title: "Recommended", ctaName: "Explore")
+    }
+    
+    var mapHeaderViewModel: SectionHeaderViewModel {
+        return SectionHeaderViewModel(title: "Based on your location", ctaName: "See map")
     }
     
     var categories: [CategoryItemViewModel] {
