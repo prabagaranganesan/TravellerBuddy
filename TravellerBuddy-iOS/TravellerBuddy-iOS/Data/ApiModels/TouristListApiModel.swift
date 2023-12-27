@@ -9,6 +9,7 @@ import Foundation
 
 struct TouristListApiModel: Decodable {
     let results: [PlacesListApiModel]
+    let totalPages: Int
 }
 
 struct PlacesListApiModel: Decodable {

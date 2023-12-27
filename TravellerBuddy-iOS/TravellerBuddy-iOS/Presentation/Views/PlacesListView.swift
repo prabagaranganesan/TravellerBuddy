@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol PlacesListNotificationDelegate: AnyObject {
+    func getNextPage(indexPaths: [IndexPath])
+}
+
 final class PlacesListView: UIView {
     
     private lazy var collectionView: UICollectionView = {
@@ -21,10 +25,13 @@ final class PlacesListView: UIView {
         return collection
     }()
     
+    weak var delegate: PlacesListNotificationDelegate?
+    
     private let viewModel: IPlacesListViewModel
     
-    init(viewModel: IPlacesListViewModel) {
+    init(viewModel: IPlacesListViewModel, delegate: PlacesListNotificationDelegate?) {
         self.viewModel = viewModel
+        self.delegate = delegate
         super.init(frame: .zero)
         setupView()
         setupCollectionView()
@@ -54,12 +61,22 @@ final class PlacesListView: UIView {
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.prefetchDataSource = self
         collectionView.register(PlacesListCell.self, forCellWithReuseIdentifier: PlacesListCell.defaultReuseIdentifier)
     }
     
     func refreshView(with data: [PlacesListItemUIModel]) {
         viewModel.updateData(viewModel: data)
         collectionView.reloadData()
+    }
+    
+    func insertItems(sections: [Int], indexPaths: [IndexPath], newItems: [PlacesListItemUIModel]) {
+        viewModel.addData(items: newItems)
+        collectionView.reloadData()
+    }
+    
+    private func getIndexPaths(start: Int, end: Int) -> IndexPath {
+        return IndexPath(row: start + end, section: 0)
     }
 }
 
@@ -93,10 +110,18 @@ extension PlacesListView: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension PlacesListView: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        delegate?.getNextPage(indexPaths: indexPaths)
+    }
+}
+
 protocol IPlacesListViewModel {
     var numberOfItems: Int { get }
     func getItem(for index: Int) -> PlacesListItemUIModel?
     func updateData(viewModel: [PlacesListItemUIModel])
+    func addData(items: [PlacesListItemUIModel])
 }
 
 final class PlacesListViewModel: IPlacesListViewModel {
@@ -114,7 +139,11 @@ final class PlacesListViewModel: IPlacesListViewModel {
         return items[index]
     }
     
-    func updateData(viewModel: [PlacesListItemUIModel]) {
+    func updateData(viewModel: [PlacesListItemUIModel]) { //TODO: combine this logic to below method
         self.items = viewModel
+    }
+    
+    func addData(items: [PlacesListItemUIModel]) {
+        self.items.append(contentsOf: items)
     }
 }

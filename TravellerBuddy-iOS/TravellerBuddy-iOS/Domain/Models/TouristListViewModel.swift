@@ -10,6 +10,7 @@ import Foundation
 struct TouristListViewModel: Equatable {
     
     let items: [PlacesListItemUIModel]
+    let totalPageCount: Int
 }
 
 struct PlacesListItemUIModel: Equatable {

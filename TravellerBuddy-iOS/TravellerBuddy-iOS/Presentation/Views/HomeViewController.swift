@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
     private lazy var placeItemViewModel: PlacesListViewModel = PlacesListViewModel()
     
     private lazy var placesListView: PlacesListView = {
-        let view: PlacesListView = PlacesListView(viewModel: placeItemViewModel)
+        let view: PlacesListView = PlacesListView(viewModel: placeItemViewModel, delegate: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -186,12 +186,20 @@ class HomeViewController: UIViewController {
                 self.placesListView.refreshView(with: viewModel.items)
             }
         }
+        
+        viewModel.refreshNextPage = { [weak self] (indexPath, items) in
+            DispatchQueue.main.async { //TODO: move to repository or viewmodel
+                guard let self = self else { return }
+                self.placesListView.insertItems(sections: [], indexPaths: indexPath, newItems: items)
+            }
+        }
     }
 }
 
 extension HomeViewController: CategoryItemTapDelegate {
     
     func itemTapped(category: String) {
+        viewModel.updateQuery(text: category)
         viewModel.fetchInitialVacationPlaces(queryText: category)
     }
 }
@@ -199,5 +207,11 @@ extension HomeViewController: CategoryItemTapDelegate {
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+    }
+}
+
+extension HomeViewController: PlacesListNotificationDelegate {
+    func getNextPage(indexPaths: [IndexPath]) {
+        viewModel.fetchNextPage(queryText: viewModel.queryText, indexPaths: indexPaths)
     }
 }

@@ -24,6 +24,7 @@ final class PlacesListCell: UICollectionViewCell {
     
     private lazy var imageView: UIImageView = {
         let view: UIImageView = UIImageView.construct()
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
