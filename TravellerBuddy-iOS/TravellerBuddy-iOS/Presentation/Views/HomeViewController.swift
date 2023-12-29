@@ -62,10 +62,22 @@ class HomeViewController: UIViewController {
         return searchBar
     }()
     
-    private lazy var searchbarContainer: UIView = {
-        let view: UIView = UIView.construct()
+    private lazy var searchbarContainer: UIStackView = {
+        let view: UIStackView = UIStackView.construct()
         view.backgroundColor = .clear
+        view.distribution = .fill
+        view.axis = .horizontal
         return view
+    }()
+    
+    private lazy var backButton: UIButton = {
+        let button: UIButton = UIButton()
+        button.setImage(UIImage(systemName: "chevron.left", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
+        button.isHidden = true
+        button.imageView?.tintColor = .gray
+        button.imageView?.contentMode = .scaleToFill
+        button.addTarget(self, action: #selector(searchBackButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     //TODO: Move this map related view to different componen and bleow secion
@@ -83,6 +95,8 @@ class HomeViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private var searchBarTopConstraint: NSLayoutConstraint?
     
     private var viewModel: IHomeViewModel
     
@@ -114,7 +128,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupView() {
-        searchbarContainer.addSubview(searchBar)
+        [backButton, searchBar].forEach { searchbarContainer.addArrangedSubview($0) }
         [searchbarContainer, categoryListView, sectionHeaderView, placesListView, mapHeaderView, mapView].forEach({ stackView.addArrangedSubview($0) })
         contentView.addSubview(stackView)
         scrollView.addSubview(contentView)
@@ -125,13 +139,17 @@ class HomeViewController: UIViewController {
         stackView.setCustomSpacing(24, after: categoryListView)
         stackView.setCustomSpacing(30, after: placesListView)
         stackView.setCustomSpacing(24, after: mapHeaderView)
+        searchbarContainer.setCustomSpacing(16, after: searchBar)
+        searchbarContainer.isLayoutMarginsRelativeArrangement = true
+        searchbarContainer.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
     
     private func applyConstrainst() {
+        let searchBarTopConstraint = scrollView.topAnchor.constraint(equalTo: view.topAnchor)
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            searchBarTopConstraint,
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -145,14 +163,12 @@ class HomeViewController: UIViewController {
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
             
-            searchBar.leadingAnchor.constraint(equalTo: searchbarContainer.leadingAnchor, constant: 16),
-            searchBar.trailingAnchor.constraint(equalTo: searchbarContainer.trailingAnchor, constant: -16),
-            searchBar.topAnchor.constraint(equalTo: searchbarContainer.topAnchor, constant: 0),
-            searchBar.bottomAnchor.constraint(equalTo: searchbarContainer.bottomAnchor, constant: 0),
             searchBar.heightAnchor.constraint(equalToConstant: 50),
-            
+            backButton.heightAnchor.constraint(equalToConstant: 50),
+            backButton.widthAnchor.constraint(equalToConstant: 40),
             mapView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/2.4)
         ])
+        self.searchBarTopConstraint = searchBarTopConstraint
     }
     
     private func addSearchBarCornerRadius() {
@@ -177,6 +193,11 @@ class HomeViewController: UIViewController {
     @objc
     private func notificationTapped() {
         //TODO: handle tap action
+    }
+    
+    @objc
+    private func searchBackButtonTapped() {
+        resetSearchBar()
     }
     
     private func bindViewModel() {
@@ -214,6 +235,32 @@ extension HomeViewController: CategoryItemTapDelegate {
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        playSearchAnimation()
+    }
+    
+    private func resetSearchBar() {
+        searchBar.endEditing(true)
+        backButton.isHidden = true
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        searchbarContainer.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: { [weak self] in
+            self?.scrollView.layoutIfNeeded()
+        })
+    }
+    
+    private func playSearchAnimation() {
+        backButton.isHidden = false
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        searchbarContainer.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations: { [weak self] in
+            self?.scrollView.layoutIfNeeded()
+        })
         
     }
 }

@@ -74,12 +74,14 @@ final class PlacesListView: UIView {
     
     func refreshView(with data: [PlacesListItemUIModel]) {
         viewModel.updateData(viewModel: data)
-        collectionView.reloadData()
+        reloadItems()
     }
     
     func insertItems(sections: [Int], indexPaths: [IndexPath], newItems: [PlacesListItemUIModel]) {
         viewModel.addData(items: newItems)
-        collectionView.reloadData()
+        collectionView.performBatchUpdates { [weak self] in
+            self?.collectionView.reloadSections(IndexSet(integer: 0))
+        }
     }
     
     func updateLoading(loadingType: PlacesListLoadingType) {
@@ -89,6 +91,11 @@ final class PlacesListView: UIView {
         case .hideLoader:
             nextPageLoadingSpinner?.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         }
+    }
+    
+    private func reloadItems() {
+        collectionView.reloadData()
+        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: false)
     }
 }
 
