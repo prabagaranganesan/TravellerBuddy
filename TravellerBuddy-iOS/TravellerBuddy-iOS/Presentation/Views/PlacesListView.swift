@@ -12,6 +12,11 @@ protocol PlacesListNotificationDelegate: AnyObject {
     func getNextPage(indexPaths: [IndexPath])
 }
 
+enum PlacesListLoadingType {
+    case hideLoader
+    case nextPage
+}
+
 final class PlacesListView: UIView {
     
     private lazy var collectionView: UICollectionView = {
@@ -28,6 +33,7 @@ final class PlacesListView: UIView {
     weak var delegate: PlacesListNotificationDelegate?
     
     private let viewModel: IPlacesListViewModel
+    private var nextPageLoadingSpinner: UICollectionReusableView?
     
     init(viewModel: IPlacesListViewModel, delegate: PlacesListNotificationDelegate?) {
         self.viewModel = viewModel
@@ -63,6 +69,7 @@ final class PlacesListView: UIView {
         collectionView.delegate = self
         collectionView.prefetchDataSource = self
         collectionView.register(PlacesListCell.self, forCellWithReuseIdentifier: PlacesListCell.defaultReuseIdentifier)
+        collectionView.register(CollectionViewLoader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionViewLoader")
     }
     
     func refreshView(with data: [PlacesListItemUIModel]) {
@@ -75,8 +82,13 @@ final class PlacesListView: UIView {
         collectionView.reloadData()
     }
     
-    private func getIndexPaths(start: Int, end: Int) -> IndexPath {
-        return IndexPath(row: start + end, section: 0)
+    func updateLoading(loadingType: PlacesListLoadingType) {
+        switch loadingType {
+        case .nextPage:
+            nextPageLoadingSpinner?.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        case .hideLoader:
+            nextPageLoadingSpinner?.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        }
     }
 }
 
@@ -92,6 +104,21 @@ extension PlacesListView: UICollectionViewDataSource, UICollectionViewDelegate {
         let item = viewModel.getItem(for: indexPath.row)
         cell.display(viewModel: item)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionView.elementKindSectionFooter:
+            nextPageLoadingSpinner = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionViewLoader", for: indexPath)
+            return nextPageLoadingSpinner ?? UICollectionReusableView()
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: 100, height: 44)
     }
 }
 
@@ -145,5 +172,35 @@ final class PlacesListViewModel: IPlacesListViewModel {
     
     func addData(items: [PlacesListItemUIModel]) {
         self.items.append(contentsOf: items)
+    }
+}
+
+class CollectionViewLoader: UICollectionReusableView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        makeReusableActivityIndicator()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func makeReusableActivityIndicator() {
+        let style = UIActivityIndicatorView.Style.gray
+        let activityIndicator = UIActivityIndicatorView(style: style)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+        let reusableContainer = UICollectionReusableView()
+        reusableContainer.addSubview(activityIndicator)
+        self.addSubview(reusableContainer)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 50)
+        ])
     }
 }

@@ -193,6 +193,14 @@ class HomeViewController: UIViewController {
                 self.placesListView.insertItems(sections: [], indexPaths: indexPath, newItems: items)
             }
         }
+        
+        viewModel.showNextPageLoader = { [weak self] in
+            self?.placesListView.updateLoading(loadingType: .nextPage)
+        }
+        
+        viewModel.hideNextPageLoader = { [weak self] in
+            self?.placesListView.updateLoading(loadingType: .hideLoader)
+        }
     }
 }
 
