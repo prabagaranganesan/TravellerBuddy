@@ -24,7 +24,16 @@ class HomeViewController: UIViewController {
     private lazy var stackView: UIStackView = {
         let stackView: UIStackView = UIStackView.construct()
         stackView.axis = .vertical
+        stackView.distribution = .fill
         stackView.spacing = 20
+        return stackView
+    }()
+    
+    private lazy var searchBaseStackView: UIStackView = {
+        let stackView: UIStackView = UIStackView.construct()
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
@@ -70,6 +79,15 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    private var searchViewModel: ISearchResultViewModel
+    
+    private lazy var searchResultView: SearchResultListView = {
+        let view: SearchResultListView = SearchResultListView(viewModel: searchViewModel)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     private lazy var backButton: UIButton = {
         let button: UIButton = UIButton()
         button.setImage(UIImage(systemName: "chevron.left", withConfiguration: UIImage.SymbolConfiguration(weight: .bold)), for: .normal)
@@ -81,7 +99,7 @@ class HomeViewController: UIViewController {
     }()
     
     //TODO: Move this map related view to different componen and bleow secion
-    lazy var mapView = {
+    lazy var mapView: MKMapView = {
         let view: MKMapView = MKMapView()
         let noLocation = CLLocationCoordinate2D(latitude: 13.0827, longitude: 80.2707)
         let viewRegion = MKCoordinateRegion(center: noLocation, latitudinalMeters: 500, longitudinalMeters: 500)
@@ -96,12 +114,12 @@ class HomeViewController: UIViewController {
         return view
     }()
     
-    private var searchBarTopConstraint: NSLayoutConstraint?
-    
+    private var scrollViewTopConstraint: NSLayoutConstraint?
     private var viewModel: IHomeViewModel
     
-    init(viewModel: IHomeViewModel) {
+    init(viewModel: IHomeViewModel, searchViewModel: ISearchResultViewModel) {
         self.viewModel = viewModel
+        self.searchViewModel = searchViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -129,10 +147,11 @@ class HomeViewController: UIViewController {
     
     private func setupView() {
         [backButton, searchBar].forEach { searchbarContainer.addArrangedSubview($0) }
-        [searchbarContainer, categoryListView, sectionHeaderView, placesListView, mapHeaderView, mapView].forEach({ stackView.addArrangedSubview($0) })
-        contentView.addSubview(stackView)
+        [searchbarContainer, searchResultView].forEach { searchBaseStackView.addArrangedSubview($0) }
+        [categoryListView, sectionHeaderView, placesListView, mapHeaderView, mapView].forEach({ stackView.addArrangedSubview($0) })
+        contentView.addSubviews(searchBaseStackView, stackView) /// Taken decision to have search result view in same screen instead of going to another screen, so that user won't feel that too much action going on and he will stay on the screen it will be much smoother
         scrollView.addSubview(contentView)
-        view.addSubview(scrollView)
+        view.addSubviews(scrollView)
         applyConstrainst()
         addSearchBarCornerRadius()
         stackView.setCustomSpacing(0, after: searchbarContainer)
@@ -145,11 +164,11 @@ class HomeViewController: UIViewController {
     }
     
     private func applyConstrainst() {
-        let searchBarTopConstraint = scrollView.topAnchor.constraint(equalTo: view.topAnchor)
+        let scrollViewTopConstraint = scrollView.topAnchor.constraint(equalTo: view.topAnchor)
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            searchBarTopConstraint,
+            scrollViewTopConstraint,
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -158,17 +177,24 @@ class HomeViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
             
+            searchBaseStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            searchBaseStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            searchBaseStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            stackView.topAnchor.constraint(equalTo: searchBaseStackView.topAnchor, constant: 40),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
+            
             
             searchBar.heightAnchor.constraint(equalToConstant: 50),
             backButton.heightAnchor.constraint(equalToConstant: 50),
             backButton.widthAnchor.constraint(equalToConstant: 40),
-            mapView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/2.4)
+            mapView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/2.4),
+            
+            searchResultView.heightAnchor.constraint(equalToConstant: 300)
         ])
-        self.searchBarTopConstraint = searchBarTopConstraint
+        self.scrollViewTopConstraint = scrollViewTopConstraint
     }
     
     private func addSearchBarCornerRadius() {
@@ -235,7 +261,7 @@ extension HomeViewController: CategoryItemTapDelegate {
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        searchResultView.searchPlaces(searchText: searchText)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -246,7 +272,11 @@ extension HomeViewController: UISearchBarDelegate {
         searchBar.endEditing(true)
         backButton.isHidden = true
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        stackView.isHidden = false
+        searchResultView.isHidden = true
+        searchBar.text = ""
         searchbarContainer.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        searchResultView.reset()
 
         UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: { [weak self] in
             self?.scrollView.layoutIfNeeded()
@@ -257,11 +287,11 @@ extension HomeViewController: UISearchBarDelegate {
         backButton.isHidden = false
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         searchbarContainer.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
-
+        stackView.isHidden = true
+        searchResultView.isHidden = false
         UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations: { [weak self] in
             self?.scrollView.layoutIfNeeded()
         })
-        
     }
 }
 

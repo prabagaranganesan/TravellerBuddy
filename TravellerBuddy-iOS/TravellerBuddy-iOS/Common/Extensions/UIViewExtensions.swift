@@ -26,3 +26,10 @@ public extension UICollectionViewCell {
         return String(describing: self)
     }
 }
+
+public extension UITableViewCell {
+    static var defaultReuseIdentifier: String {
+        return String(describing: self)
+    }
+}
+
