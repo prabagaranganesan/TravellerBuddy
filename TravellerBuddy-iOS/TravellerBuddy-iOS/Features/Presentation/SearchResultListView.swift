@@ -17,7 +17,15 @@ final class SearchResultListView: UIView {
         return view
     }()
     
+    private lazy var emptySearchResultView: SearchEmptyResultView = {
+        let resultView: SearchEmptyResultView = SearchEmptyResultView(frame: .zero)
+        resultView.translatesAutoresizingMaskIntoConstraints = false
+        resultView.isHidden = true
+        return resultView
+    }()
+    
     private let completer = MKLocalSearchCompleter()
+    private var searchText = ""
     private var viewModel: ISearchResultViewModel
     
     init(viewModel: ISearchResultViewModel) {
@@ -33,7 +41,7 @@ final class SearchResultListView: UIView {
     }
     
     private func setupView() {
-        self.addSubviews(tableView)
+        self.addSubviews(tableView, emptySearchResultView)
         applyConstraints()
         configTableView()
         setupSearchCompleter()
@@ -44,7 +52,11 @@ final class SearchResultListView: UIView {
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
+            
+            emptySearchResultView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            emptySearchResultView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            emptySearchResultView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
         ])
     }
     
@@ -67,19 +79,32 @@ final class SearchResultListView: UIView {
             guard let self = self else { return }
             self.tableView.reloadData()
         }
+        
+        viewModel.showEmptyResultView = { [weak self] in
+            guard let self = self else { return }
+            self.emptySearchResultView.isHidden = false
+        }
+        
+        viewModel.hideEmptyResultView = { [weak self] in
+            self?.emptySearchResultView.isHidden = true
+        }
     }
     
     func searchPlaces(searchText: String) {
+        guard searchText.count > 2 else { return }
+        self.searchText = searchText
         completer.queryFragment = searchText
     }
     
     func reset() {
         viewModel.reset()
+        emptySearchResultView.isHidden = true
     }
     
     private func setupSearchCompleter() {
         completer.delegate = self
         completer.pointOfInterestFilter = .some(MKPointOfInterestFilter(including: [.aquarium, .marina, .beach, .museum, .zoo, .aquarium, .nationalPark, .park]))
+        emptySearchResultView.displayData(viewModel: viewModel.getEmptyResultData())
     }
 }
 
@@ -107,7 +132,7 @@ extension SearchResultListView: UITableViewDelegate {
 
 extension SearchResultListView: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        viewModel.searchResultsDidUpdate(results: completer.results)
+        viewModel.searchResultsDidUpdate(results: completer.results, searchText: searchText)
     }
 }
 
@@ -135,6 +160,7 @@ final class SearchResultItemCell: UITableViewCell {
         let view: UIImageView = UIImageView.construct()
         view.image = UIImage(systemName: "chevron.right")
         view.contentMode = .scaleAspectFit
+        view.tintColor = .gray
         return view
     }()
     
@@ -156,6 +182,7 @@ final class SearchResultItemCell: UITableViewCell {
     private func setupView() {
         self.contentView.addSubviews(titleLabel, subTitleLabel, chevronIcon, divider)
         applyConstraints()
+        self.selectionStyle = .none
     }
     
     private func applyConstraints() {
@@ -191,15 +218,19 @@ final class SearchResultItemCell: UITableViewCell {
 protocol ISearchResultViewModel {
     var numberOfRows: Int { get }
     var refreshItems: () -> Void { get set }
+    var showEmptyResultView: () -> Void { get set }
+    var hideEmptyResultView: () -> Void { get set }
     func getItem(for index: Int) -> SearchResultItemViewModel
-    func searchResultsDidUpdate(results: [MKLocalSearchCompletion])
+    func searchResultsDidUpdate(results: [MKLocalSearchCompletion], searchText: String)
     func reset()
+    func getEmptyResultData() -> EmptySearchViewModel
 }
 
 final class SearchResultViewModel: ISearchResultViewModel {
     
     var refreshItems: () -> Void = { }
-    
+    var showEmptyResultView: () -> Void = { }
+    var hideEmptyResultView: () -> Void = { }
     private var items: [SearchResultItemViewModel] = []
     
     var numberOfRows: Int {
@@ -210,14 +241,24 @@ final class SearchResultViewModel: ISearchResultViewModel {
         return items[index]
     }
     
-    func searchResultsDidUpdate(results: [MKLocalSearchCompletion]) {
+    func searchResultsDidUpdate(results: [MKLocalSearchCompletion], searchText: String) {
         items = results.map { $0.toDomain() }
+        guard !items.isEmpty else {
+            showEmptyResultView()
+            refreshItems()
+            return
+        }
+        hideEmptyResultView()
         refreshItems()
     }
     
     func reset() {
         items = []
         self.refreshItems()
+    }
+    
+    func getEmptyResultData() -> EmptySearchViewModel {
+        return EmptySearchViewModel(title: "No places found for your searches", message: "Please try to change your search name")//TODO: localise
     }
 }
 

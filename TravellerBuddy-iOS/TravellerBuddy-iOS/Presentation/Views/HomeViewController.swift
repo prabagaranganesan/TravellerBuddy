@@ -85,6 +85,7 @@ class HomeViewController: UIViewController {
         let view: SearchResultListView = SearchResultListView(viewModel: searchViewModel)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .clear
+        view.isHidden = true
         return view
     }()
     
@@ -262,6 +263,11 @@ extension HomeViewController: CategoryItemTapDelegate {
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            searchResultView.reset()
+            return
+            
+        }
         searchResultView.searchPlaces(searchText: searchText)
     }
     

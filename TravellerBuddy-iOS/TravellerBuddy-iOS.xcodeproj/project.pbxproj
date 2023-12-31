@@ -42,6 +42,7 @@
 		506D49AB2B36B53600B38868 /* PlacesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49AA2B36B53600B38868 /* PlacesSectionHeaderView.swift */; };
 		506D49AD2B37148E00B38868 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49AC2B37148E00B38868 /* CategoryListView.swift */; };
 		506D49B32B3F060500B38868 /* SearchResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49B22B3F060500B38868 /* SearchResultListView.swift */; };
+		506D49B52B413EA000B38868 /* EmptySearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49B42B413EA000B38868 /* EmptySearchResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		506D49AA2B36B53600B38868 /* PlacesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesSectionHeaderView.swift; sourceTree = "<group>"; };
 		506D49AC2B37148E00B38868 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		506D49B22B3F060500B38868 /* SearchResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListView.swift; sourceTree = "<group>"; };
+		506D49B42B413EA000B38868 /* EmptySearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				506D49B22B3F060500B38868 /* SearchResultListView.swift */,
+				506D49B42B413EA000B38868 /* EmptySearchResultView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				506D49B32B3F060500B38868 /* SearchResultListView.swift in Sources */,
 				506D49882B34800100B38868 /* Constant.swift in Sources */,
 				506D497F2B347AB300B38868 /* TouristListViewModel.swift in Sources */,
+				506D49B52B413EA000B38868 /* EmptySearchResultView.swift in Sources */,
 				506D49632B32AF9700B38868 /* NetworkConfig.swift in Sources */,
 				506D498A2B34808A00B38868 /* TouristsRequestModel.swift in Sources */,
 				506D498D2B34821D00B38868 /* TouristListApiModel+Mapping.swift in Sources */,
