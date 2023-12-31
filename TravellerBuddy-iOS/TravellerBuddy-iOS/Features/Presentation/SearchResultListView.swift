@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 import UIKit
 
 final class SearchResultListView: UIView {
@@ -13,10 +14,10 @@ final class SearchResultListView: UIView {
     private lazy var tableView: UITableView = {
         let view: UITableView = UITableView.construct()
         view.separatorStyle = .none
-        view.backgroundColor = .clear
         return view
     }()
     
+    private let completer = MKLocalSearchCompleter()
     private var viewModel: ISearchResultViewModel
     
     init(viewModel: ISearchResultViewModel) {
@@ -24,6 +25,7 @@ final class SearchResultListView: UIView {
         super.init(frame: .zero)
         setupView()
         bindViewModel()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -34,11 +36,12 @@ final class SearchResultListView: UIView {
         self.addSubviews(tableView)
         applyConstraints()
         configTableView()
+        setupSearchCompleter()
     }
     
     private func applyConstraints() {
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
@@ -51,6 +54,12 @@ final class SearchResultListView: UIView {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.register(SearchResultItemCell.self, forCellReuseIdentifier: SearchResultItemCell.defaultReuseIdentifier)
+        applyCornerRadius()
+    }
+    
+    private func applyCornerRadius() {
+        tableView.clipsToBounds = true
+        tableView.layer.cornerRadius = 12
     }
     
     private func bindViewModel() {
@@ -61,11 +70,16 @@ final class SearchResultListView: UIView {
     }
     
     func searchPlaces(searchText: String) {
-        viewModel.searchPlaces(searchText: searchText)
+        completer.queryFragment = searchText
     }
     
     func reset() {
         viewModel.reset()
+    }
+    
+    private func setupSearchCompleter() {
+        completer.delegate = self
+        completer.pointOfInterestFilter = .some(MKPointOfInterestFilter(including: [.aquarium, .marina, .beach, .museum, .zoo, .aquarium, .nationalPark, .park]))
     }
 }
 
@@ -91,8 +105,15 @@ extension SearchResultListView: UITableViewDelegate {
     }
 }
 
+extension SearchResultListView: MKLocalSearchCompleterDelegate {
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        viewModel.searchResultsDidUpdate(results: completer.results)
+    }
+}
+
 struct SearchResultItemViewModel {
     let title: String
+    let subTitle: String
 }
 
 final class SearchResultItemCell: UITableViewCell {
@@ -103,10 +124,23 @@ final class SearchResultItemCell: UITableViewCell {
         return label
     }()
     
+    private lazy var subTitleLabel: UILabel = {
+        let label: UILabel = UILabel.construct()
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
+    
     private lazy var chevronIcon: UIImageView = {
         let view: UIImageView = UIImageView.construct()
         view.image = UIImage(systemName: "chevron.right")
         view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    private lazy var divider: UIView = {
+        let view: UIView = UIView.construct()
+        view.backgroundColor = .lightGray
         return view
     }()
     
@@ -120,27 +154,37 @@ final class SearchResultItemCell: UITableViewCell {
     }
     
     private func setupView() {
-        self.contentView.addSubviews(titleLabel, chevronIcon)
+        self.contentView.addSubviews(titleLabel, subTitleLabel, chevronIcon, divider)
         applyConstraints()
     }
     
     private func applyConstraints() {
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
+            titleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: self.chevronIcon.leadingAnchor, constant: -16),
             
-            chevronIcon.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 8),
+            subTitleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            subTitleLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 8),
+            subTitleLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -16),
+            subTitleLabel.trailingAnchor.constraint(equalTo: self.chevronIcon.leadingAnchor),
+            
             chevronIcon.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             chevronIcon.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             chevronIcon.heightAnchor.constraint(equalToConstant: 20),
-            chevronIcon.widthAnchor.constraint(equalToConstant: 20)
+            chevronIcon.widthAnchor.constraint(equalToConstant: 20),
+            
+            divider.heightAnchor.constraint(equalToConstant: 1),
+            divider.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            divider.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            divider.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor)
         ])
     }
     
     func display(viewModel: SearchResultItemViewModel) {
         titleLabel.text = viewModel.title
+        subTitleLabel.text = viewModel.subTitle
     }
 }
 
@@ -148,7 +192,7 @@ protocol ISearchResultViewModel {
     var numberOfRows: Int { get }
     var refreshItems: () -> Void { get set }
     func getItem(for index: Int) -> SearchResultItemViewModel
-    func searchPlaces(searchText: String)
+    func searchResultsDidUpdate(results: [MKLocalSearchCompletion])
     func reset()
 }
 
@@ -156,12 +200,7 @@ final class SearchResultViewModel: ISearchResultViewModel {
     
     var refreshItems: () -> Void = { }
     
-    private let repository: MapSearchRepositoy
     private var items: [SearchResultItemViewModel] = []
-    
-    init(repository: MapSearchRepositoy) {
-        self.repository = repository
-    }
     
     var numberOfRows: Int {
         return items.count
@@ -171,12 +210,9 @@ final class SearchResultViewModel: ISearchResultViewModel {
         return items[index]
     }
     
-    func searchPlaces(searchText: String) {
-        repository.searchPlaces(using: searchText + "Vacation") { [weak self] results in
-            guard let self = self else { return }
-            self.items = results
-            self.refreshItems()
-        }
+    func searchResultsDidUpdate(results: [MKLocalSearchCompletion]) {
+        items = results.map { $0.toDomain() }
+        refreshItems()
     }
     
     func reset() {
@@ -185,38 +221,9 @@ final class SearchResultViewModel: ISearchResultViewModel {
     }
 }
 
-import MapKit
-
-protocol MapSearchRepositoy {
-    func searchPlaces(using searchText: String, completion: @escaping ([SearchResultItemViewModel]) -> Void)
-}
-
-final class MapKitMapSearchRepository: MapSearchRepositoy {
-    
-    func searchPlaces(using searchText: String, completion: @escaping ([SearchResultItemViewModel]) -> Void) {
-        let request = getTourPlacesSearchRequest(searchText: searchText)
-        let search = MKLocalSearch(request: request)
-
-        search.start { response, _ in
-            guard let response = response else {
-                return
-            }
-            completion(response.mapItems.map { $0.toDomain() })
-        }
-    }
-    
-    private func getTourPlacesSearchRequest(searchText: String) -> MKLocalSearch.Request {
-        let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = searchText
-        request.region = MKMapView().region //TODO: pass current region
-        request.resultTypes = .pointOfInterest
-        return request
-    }
-}
-
-extension MKMapItem {
+extension MKLocalSearchCompletion {
     
     func toDomain() -> SearchResultItemViewModel {
-        return SearchResultItemViewModel(title: self.name ?? "")
+        return SearchResultItemViewModel(title: self.title, subTitle: subtitle)
     }
 }

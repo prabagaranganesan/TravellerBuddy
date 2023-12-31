@@ -116,6 +116,7 @@ class HomeViewController: UIViewController {
     
     private var scrollViewTopConstraint: NSLayoutConstraint?
     private var viewModel: IHomeViewModel
+
     
     init(viewModel: IHomeViewModel, searchViewModel: ISearchResultViewModel) {
         self.viewModel = viewModel
@@ -192,7 +193,7 @@ class HomeViewController: UIViewController {
             backButton.widthAnchor.constraint(equalToConstant: 40),
             mapView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height/2.4),
             
-            searchResultView.heightAnchor.constraint(equalToConstant: 300)
+            searchResultView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height-130)
         ])
         self.scrollViewTopConstraint = scrollViewTopConstraint
     }
@@ -295,7 +296,7 @@ extension HomeViewController: UISearchBarDelegate {
     }
 }
 
-extension HomeViewController: PlacesListNotificationDelegate {
+extension HomeViewController: PlacesListNotificationDelegate, MKLocalSearchCompleterDelegate {
     func getNextPage(indexPaths: [IndexPath]) {
         viewModel.fetchNextPage(queryText: viewModel.queryText, indexPaths: indexPaths)
     }

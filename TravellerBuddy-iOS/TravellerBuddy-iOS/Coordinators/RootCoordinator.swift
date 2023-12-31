@@ -21,8 +21,7 @@ final class RootCoordinator {
         //TODO: move to factory class
         let touristReposiotry = DefaultTouristsRepository(dataTransferService: appDIController.apiDataTransferService)
         let viewModel = HomeViewModel(repository: touristReposiotry)
-        let searchRepository = MapKitMapSearchRepository()
-        let searchViewModel = SearchResultViewModel(repository: searchRepository)
+        let searchViewModel = SearchResultViewModel()
         let homeViewController = HomeViewController(viewModel: viewModel, searchViewModel: searchViewModel)
         navigationController.pushViewController(homeViewController, animated: true)
     }
