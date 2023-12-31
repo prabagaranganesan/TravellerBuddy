@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-struct EmptySearchViewModel {
-    let title: String
-    let message: String
-}
-
 final class SearchEmptyResultView: UIView {
     
     private lazy var titleLabel: UILabel = {
