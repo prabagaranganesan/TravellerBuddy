@@ -13,6 +13,10 @@ struct SectionHeaderViewModel {
     let ctaName: String
 }
 
+protocol PlacesListHeaderTapDelegate: AnyObject {
+    func rightCTATapped()
+}
+
 final class PlacesSectionHeaderView: UIView {
     
     private var leftLabel: UILabel = {
@@ -27,13 +31,18 @@ final class PlacesSectionHeaderView: UIView {
         button.titleLabel?.textAlignment = .right
         button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        button.isUserInteractionEnabled = true
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private weak var tapDelegate: PlacesListHeaderTapDelegate?
+    
+    init(tapDelegate: PlacesListHeaderTapDelegate?) {
+        self.tapDelegate = tapDelegate
+        super.init(frame: .zero)
         setupView()
     }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -41,19 +50,26 @@ final class PlacesSectionHeaderView: UIView {
     private func setupView() {
         self.addSubviews(leftLabel, rightButton)
         applyConstraints()
+        rightButton.addTarget(self, action: #selector(rightCTATapped), for: .touchUpInside)
     }
     
     private func applyConstraints() {
         
         NSLayoutConstraint.activate([
             leftLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            leftLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            leftLabel.trailingAnchor.constraint(equalTo: rightButton.trailingAnchor, constant: -12),
+            leftLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            leftLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            leftLabel.trailingAnchor.constraint(equalTo: rightButton.leadingAnchor, constant: -12),
             
             rightButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
             rightButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             rightButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 20)
         ])
+    }
+    
+    @objc
+    private func rightCTATapped() {
+        tapDelegate?.rightCTATapped()
     }
     
     func display(viewModel: SectionHeaderViewModel) {

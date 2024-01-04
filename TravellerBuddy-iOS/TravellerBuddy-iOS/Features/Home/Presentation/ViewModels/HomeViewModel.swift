@@ -19,18 +19,23 @@ protocol IHomeViewModel {
     func updateQuery(text: String)
     func fetchInitialVacationPlaces(queryText: String)
     func fetchNextPage(queryText: String, indexPaths: [IndexPath])
+    func exploreCTATapped()
 }
 
 final class HomeViewModel: IHomeViewModel {
+    
+    var refreshPlaces: (TouristListViewModel) -> Void = { _ in }
+    var refreshNextPage: ([IndexPath], [PlacesListItemUIModel]) -> Void = { (_, _) in }
+    var showNextPageLoader: () -> Void = { }
+    var hideNextPageLoader: () -> Void = { }
+    
+    weak var homeCoordinator: HomeCoordinator?
     
     private let repository: TouristsRepository
     private var initialPageCount = 1
     private let paginationHelper: PaginationHelper
     private (set) var queryText: String = "Beaches"
-    var refreshPlaces: (TouristListViewModel) -> Void = { _ in }
-    var refreshNextPage: ([IndexPath], [PlacesListItemUIModel]) -> Void = { (_, _) in }
-    var showNextPageLoader: () -> Void = { }
-    var hideNextPageLoader: () -> Void = { }
+    
     
     init(repository: TouristsRepository, paginationHelper: PaginationHelper = PaginationHelper()) {
         self.repository = repository
@@ -114,6 +119,10 @@ final class HomeViewModel: IHomeViewModel {
     func updateQuery(text: String) {
         queryText = text
         paginationHelper.reset()
+    }
+    
+    func exploreCTATapped() {
+        homeCoordinator?.showPlacesFeedScreen()
     }
 }
 

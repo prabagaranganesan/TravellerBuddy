@@ -51,12 +51,6 @@ class HomeViewController: UIViewController {
         return view
     }()
     
-    private lazy var sectionHeaderView: PlacesSectionHeaderView = {
-        let view: PlacesSectionHeaderView = PlacesSectionHeaderView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private lazy var searchBar: UISearchBar = {
         let searchBar: UISearchBar = UISearchBar(frame: .zero)
         searchBar.searchBarStyle = .prominent
@@ -109,8 +103,14 @@ class HomeViewController: UIViewController {
         return view
     }()
     
+    private lazy var placesListHeaderView: PlacesSectionHeaderView = {
+        let view: PlacesSectionHeaderView = PlacesSectionHeaderView(tapDelegate: self)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var mapHeaderView: PlacesSectionHeaderView = {
-        let view: PlacesSectionHeaderView = PlacesSectionHeaderView(frame: .zero)
+        let view: PlacesSectionHeaderView = PlacesSectionHeaderView(tapDelegate: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -150,8 +150,8 @@ class HomeViewController: UIViewController {
     private func setupView() {
         [backButton, searchBar].forEach { searchbarContainer.addArrangedSubview($0) }
         [searchbarContainer, searchResultView].forEach { searchBaseStackView.addArrangedSubview($0) }
-        [categoryListView, sectionHeaderView, placesListView, mapHeaderView, mapView].forEach({ stackView.addArrangedSubview($0) })
-        contentView.addSubviews(searchBaseStackView, stackView) /// Taken decision to have search result view in same screen instead of going to another screen, so that user won't feel that too much action going on and he will stay on the screen it will be much smoother
+        [categoryListView, placesListHeaderView, placesListView, mapHeaderView, mapView].forEach({ stackView.addArrangedSubview($0) })
+        contentView.addSubviews(searchBaseStackView, stackView) /// Taken decision to have search result view in same screen instead of going to another new screen, so that user won't feel that too much action going on and he will stay on the same screen it will be much smoother
         scrollView.addSubview(contentView)
         view.addSubviews(scrollView)
         applyConstrainst()
@@ -205,7 +205,7 @@ class HomeViewController: UIViewController {
     }
     
     private func loadInitialData() {
-        sectionHeaderView.display(viewModel: self.viewModel.sectionHeaderViewModel)
+        placesListHeaderView.display(viewModel: self.viewModel.sectionHeaderViewModel)
         categoryListView.refreshView(with: self.viewModel.categories)
         mapHeaderView.display(viewModel: viewModel.mapHeaderViewModel)
     }
@@ -305,5 +305,11 @@ extension HomeViewController: UISearchBarDelegate {
 extension HomeViewController: PlacesListNotificationDelegate, MKLocalSearchCompleterDelegate {
     func getNextPage(indexPaths: [IndexPath]) {
         viewModel.fetchNextPage(queryText: viewModel.queryText, indexPaths: indexPaths)
+    }
+}
+
+extension HomeViewController: PlacesListHeaderTapDelegate {
+    func rightCTATapped() {
+        viewModel.exploreCTATapped()
     }
 }
