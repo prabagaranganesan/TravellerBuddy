@@ -32,15 +32,17 @@ final class PlacesListView: UIView {
     
     weak var delegate: PlacesListNotificationDelegate?
     
-    private let viewModel: IPlacesListViewModel
+    private var viewModel: IPlacesFeedViewModel
     private var nextPageLoadingSpinner: UICollectionReusableView?
     
-    init(viewModel: IPlacesListViewModel, delegate: PlacesListNotificationDelegate?) {
+    init(viewModel: IPlacesFeedViewModel, delegate: PlacesListNotificationDelegate?) {
         self.viewModel = viewModel
         self.delegate = delegate
         super.init(frame: .zero)
         setupView()
         setupCollectionView()
+        bindViewModel()
+        loadPlacess(queryText: "Beaches")
     }
     
     required init?(coder: NSCoder) {
@@ -97,6 +99,28 @@ final class PlacesListView: UIView {
         collectionView.reloadData()
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: false)
     }
+    
+    func loadPlacess(queryText: String) {
+        viewModel.fetchInitialVacationPlaces(queryText: queryText)
+    }
+    
+    func bindViewModel() {
+        viewModel.refreshPlaces = { [weak self] response in
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+        
+        viewModel.refreshNextPage = { (indexPaths, items) in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                let indexPathToReload = self.visibleIndexPathsToReload(indexPaths: indexPaths, visibleIndexPaths: self.collectionView.indexPathsForVisibleItems)
+                collectionView.performBatchUpdates { [weak self] in
+                    self?.collectionView.reloadSections(IndexSet(integer: 0))
+                }
+            }
+        }
+    }
 }
 
 extension PlacesListView: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -147,38 +171,14 @@ extension PlacesListView: UICollectionViewDelegateFlowLayout {
 extension PlacesListView: UICollectionViewDataSourcePrefetching {
     
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        delegate?.getNextPage(indexPaths: indexPaths)
-    }
-}
-
-protocol IPlacesListViewModel {
-    var numberOfItems: Int { get }
-    func getItem(for index: Int) -> PlacesListItemUIModel?
-    func updateData(viewModel: [PlacesListItemUIModel])
-    func addData(items: [PlacesListItemUIModel])
-}
-
-final class PlacesListViewModel: IPlacesListViewModel {
-    
-    private var items: [PlacesListItemUIModel] = []
-    
-    var numberOfItems: Int {
-        return items.count
+        viewModel.fetchNextPage(queryText: "Beaches", indexPaths: indexPaths)
     }
     
-    func getItem(for index: Int) -> PlacesListItemUIModel? {
-        guard !(index >= items.count) else {
-            return nil
-        }
-        return items[index]
-    }
-    
-    func updateData(viewModel: [PlacesListItemUIModel]) { //TODO: combine this logic to below method
-        self.items = viewModel
-    }
-    
-    func addData(items: [PlacesListItemUIModel]) {
-        self.items.append(contentsOf: items)
+    private func visibleIndexPathsToReload(indexPaths: [IndexPath], visibleIndexPaths: [IndexPath]) -> [IndexPath] {
+        
+        let indexPathInterSection = Set(visibleIndexPaths).intersection(indexPaths)
+        return Array(indexPathInterSection)
+        
     }
 }
 

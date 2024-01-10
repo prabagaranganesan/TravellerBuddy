@@ -66,7 +66,7 @@ final class PlacesFeedViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.refreshPlaces = { [weak self]response in
+        viewModel.refreshPlaces = { [weak self] response in
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }

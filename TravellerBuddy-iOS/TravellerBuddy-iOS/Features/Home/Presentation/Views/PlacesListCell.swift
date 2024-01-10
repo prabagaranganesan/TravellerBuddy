@@ -68,6 +68,12 @@ final class PlacesListCell: UICollectionViewCell {
         self.imageView.layer.cornerRadius = 12
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.imageView.image = nil
+        self.titleLabel.text = nil
+    }
+    
     func display(viewModel: PlacesListItemUIModel?) {
         guard let viewModel = viewModel else { return }
         titleLabel.text = viewModel.title?.localizedCapitalized

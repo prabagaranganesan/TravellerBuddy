@@ -36,11 +36,9 @@ class HomeViewController: UIViewController {
         stackView.backgroundColor = .clear
         return stackView
     }()
-    
-    private lazy var placeItemViewModel: PlacesListViewModel = PlacesListViewModel()
-    
+        
     private lazy var placesListView: PlacesListView = {
-        let view: PlacesListView = PlacesListView(viewModel: placeItemViewModel, delegate: self)
+        let view: PlacesListView = PlacesListView(viewModel: placesFeedViewModel, delegate: self)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
