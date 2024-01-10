@@ -49,6 +49,7 @@
 		506D49BC2B4161AF00B38868 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49BB2B4161AF00B38868 /* SearchResultViewModel.swift */; };
 		506D49BE2B4161E300B38868 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49BD2B4161E300B38868 /* Models.swift */; };
 		506D49C02B41621700B38868 /* EmptySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49BF2B41621700B38868 /* EmptySearchViewModel.swift */; };
+		50D75E672B4A4BEE007B2605 /* PlacesFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D75E662B4A4BEE007B2605 /* PlacesFeedViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		506D49BB2B4161AF00B38868 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		506D49BD2B4161E300B38868 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		506D49BF2B41621700B38868 /* EmptySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchViewModel.swift; sourceTree = "<group>"; };
+		50D75E662B4A4BEE007B2605 /* PlacesFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesFeedViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 		500382922B4644AA00B414D7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				50D75E652B4A4BDE007B2605 /* ViewModels */,
 				500382952B4644CE00B414D7 /* PlacesFeedViewController.swift */,
 			);
 			path = Presentation;
@@ -450,6 +453,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		50D75E652B4A4BDE007B2605 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				50D75E662B4A4BEE007B2605 /* PlacesFeedViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -588,6 +599,7 @@
 				506D49A72B367C3900B38868 /* ImageDownloader.swift in Sources */,
 				506D499E2B35404800B38868 /* PlacesListCell.swift in Sources */,
 				506D49A12B35732800B38868 /* HomeViewModel.swift in Sources */,
+				50D75E672B4A4BEE007B2605 /* PlacesFeedViewModel.swift in Sources */,
 				506D49AB2B36B53600B38868 /* PlacesSectionHeaderView.swift in Sources */,
 				506D49732B34709400B38868 /* Request+Extension.swift in Sources */,
 				506D499A2B3525A800B38868 /* RootCoordinator.swift in Sources */,

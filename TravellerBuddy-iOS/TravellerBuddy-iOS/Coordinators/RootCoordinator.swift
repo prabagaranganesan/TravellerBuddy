@@ -43,12 +43,13 @@ final class HomeCoordinator {
         let viewModel = HomeViewModel(repository: touristReposiotry)
         viewModel.homeCoordinator = self
         let searchViewModel = SearchResultViewModel()
-        let homeViewController = HomeViewController(viewModel: viewModel, searchViewModel: searchViewModel)
+        let placesFeedViewModel = PlacesFeedViewModel(repository: touristReposiotry)
+        let homeViewController = HomeViewController(viewModel: viewModel, searchViewModel: searchViewModel, placesFeedViewModel: placesFeedViewModel)
         navigationController.pushViewController(homeViewController, animated: true)
     }
     
     func showPlacesFeedScreen() {
-        placesFeedCoordinator = PlacesFeedCoordinator(navigationController: self.navigationController)
+        placesFeedCoordinator = PlacesFeedCoordinator(navigationController: self.navigationController, appDIController: appDIController)
         placesFeedCoordinator?.start()
     }
 }

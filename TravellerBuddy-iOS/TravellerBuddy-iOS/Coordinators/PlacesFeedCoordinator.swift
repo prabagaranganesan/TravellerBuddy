@@ -11,13 +11,16 @@ import UIKit
 final class PlacesFeedCoordinator {
     
     private let navigationController: UINavigationController
-    
-    init(navigationController: UINavigationController) {
+    private let appDIController: AppDIContainer
+
+    init(navigationController: UINavigationController, appDIController: AppDIContainer) {
         self.navigationController = navigationController
+        self.appDIController = appDIController
     }
     
     func start() {
-        let viewModel = PlacessFeedViewModel()
+        let touristReposiotry = DefaultTouristsRepository(dataTransferService: appDIController.apiDataTransferService)
+        let viewModel = PlacesFeedViewModel(repository: touristReposiotry)
         let placesFeedVC = PlacesFeedViewController(viewModel: viewModel)
         navigationController.pushViewController(placesFeedVC, animated: true)
     }

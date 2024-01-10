@@ -11,6 +11,7 @@ struct TouristListViewModel: Equatable {
     
     let items: [PlacesListItemUIModel]
     let totalPageCount: Int
+    let totalItemCount: Int
 }
 
 struct PlacesListItemUIModel: Equatable {

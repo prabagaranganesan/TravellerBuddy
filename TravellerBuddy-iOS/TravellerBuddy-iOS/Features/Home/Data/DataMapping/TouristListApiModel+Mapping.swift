@@ -9,7 +9,7 @@ import Foundation
 
 extension TouristListApiModel {
     func toDomain() -> TouristListViewModel {
-        return TouristListViewModel(items: self.results.map( { $0.toDomain() }), totalPageCount: totalPages)
+        return TouristListViewModel(items: self.results.map( { $0.toDomain() }), totalPageCount: totalPages, totalItemCount: total)
     }
 }
 

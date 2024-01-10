@@ -16,7 +16,7 @@ final class PlacesFeedViewController: UIViewController {
         return tableView
     }()
     
-    private let viewModel: IPlacesFeedViewModel
+    private var viewModel: IPlacesFeedViewModel
     
     init(viewModel: IPlacesFeedViewModel) {
         self.viewModel = viewModel
@@ -29,6 +29,8 @@ final class PlacesFeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViewModel()
+        viewModel.fetchInitialVacationPlaces(queryText: "Havelock island beaches")
     }
     
     override func loadView() {
@@ -56,24 +58,51 @@ final class PlacesFeedViewController: UIViewController {
     private func configTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.prefetchDataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 72
        
         tableView.register(PlacesFeedCell.self, forCellReuseIdentifier: PlacesFeedCell.defaultReuseIdentifier)
     }
+    
+    private func bindViewModel() {
+        viewModel.refreshPlaces = { [weak self]response in
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
+        
+        viewModel.refreshNextPage = { (indexPaths, items) in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                let indexPathToReload = self.visibleIndexPathsToReload(indexPaths: indexPaths, visibleIndexPaths: self.tableView.indexPathsForVisibleRows ?? [])
+                tableView.performBatchUpdates {
+                    self.tableView.reloadRows(at: indexPathToReload, with: .none)
+                }
+            }
+        }
+        
+        viewModel.showNextPageLoader = {
+            
+        }
+        
+        viewModel.hideNextPageLoader = {
+            
+        }
+    }
 }
 
 extension PlacesFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numberOfRows
+        return viewModel.numberOfItems
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlacesFeedCell.defaultReuseIdentifier, for: indexPath) as? PlacesFeedCell else {
             return UITableViewCell()
         }
-        
-        cell.display(viewModel: nil) //TODO: pass viewModel here
+        let item = viewModel.getItem(for: indexPath.row)
+        cell.display(viewModel: item) //TODO: pass viewModel here
         return cell
     }
 }
@@ -84,6 +113,21 @@ extension PlacesFeedViewController: UITableViewDelegate {
         //TODO: handle tap action
     }
 }
+
+extension PlacesFeedViewController: UITableViewDataSourcePrefetching {
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        viewModel.fetchNextPage(queryText: viewModel.queryText, indexPaths: indexPaths)
+    }
+    
+    private func visibleIndexPathsToReload(indexPaths: [IndexPath], visibleIndexPaths: [IndexPath]) -> [IndexPath] {
+        
+        let indexPathInterSection = Set(visibleIndexPaths).intersection(indexPaths)
+        return Array(indexPathInterSection)
+        
+    }
+}
+
 
 //Navigation bar setup
 extension PlacesFeedViewController {
@@ -163,15 +207,9 @@ final class PlacesFeedCell: UITableViewCell {
         guard let imagePath = viewModel.imagePath, let url = URL(string: imagePath) else { return }
         imageBanner.setImage(with: url)
     }
-}
-
-protocol IPlacesFeedViewModel {
-    var numberOfRows: Int { get }
-}
-
-final class PlacessFeedViewModel: IPlacesFeedViewModel {
     
-    var numberOfRows: Int {
-        return 10
+    override func prepareForReuse() {
+        self.imageBanner.image = nil
+        self.titleLabel.text = nil
     }
 }

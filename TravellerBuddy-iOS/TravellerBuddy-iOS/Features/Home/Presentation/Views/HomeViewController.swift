@@ -74,6 +74,7 @@ class HomeViewController: UIViewController {
     }()
     
     private var searchViewModel: ISearchResultViewModel
+    private var placesFeedViewModel: IPlacesFeedViewModel
     
     private lazy var searchResultView: SearchResultListView = {
         let view: SearchResultListView = SearchResultListView(viewModel: searchViewModel)
@@ -119,9 +120,10 @@ class HomeViewController: UIViewController {
     private var viewModel: IHomeViewModel
 
     
-    init(viewModel: IHomeViewModel, searchViewModel: ISearchResultViewModel) {
+    init(viewModel: IHomeViewModel, searchViewModel: ISearchResultViewModel, placesFeedViewModel: IPlacesFeedViewModel) {
         self.viewModel = viewModel
         self.searchViewModel = searchViewModel
+        self.placesFeedViewModel = placesFeedViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -134,7 +136,7 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = UIColor.systemGray6
         bindViewModel()
         loadInitialData()
-        viewModel.fetchInitialVacationPlaces(queryText: "Beaches")
+        placesFeedViewModel.fetchInitialVacationPlaces(queryText: "Beaches")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -229,25 +231,25 @@ class HomeViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.refreshPlaces = { [weak self] viewModel in
+        placesFeedViewModel.refreshPlaces = { [weak self] viewModel in
             DispatchQueue.main.async { //TODO: move to repository or viewmodel
                 guard let self = self else { return }
                 self.placesListView.refreshView(with: viewModel.items)
             }
         }
         
-        viewModel.refreshNextPage = { [weak self] (indexPath, items) in
+        placesFeedViewModel.refreshNextPage = { [weak self] (indexPath, items) in
             DispatchQueue.main.async { //TODO: move to repository or viewmodel
                 guard let self = self else { return }
                 self.placesListView.insertItems(sections: [], indexPaths: indexPath, newItems: items)
             }
         }
         
-        viewModel.showNextPageLoader = { [weak self] in
+        placesFeedViewModel.showNextPageLoader = { [weak self] in
             self?.placesListView.updateLoading(loadingType: .nextPage)
         }
         
-        viewModel.hideNextPageLoader = { [weak self] in
+        placesFeedViewModel.hideNextPageLoader = { [weak self] in
             self?.placesListView.updateLoading(loadingType: .hideLoader)
         }
     }
@@ -256,8 +258,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController: CategoryItemTapDelegate {
     
     func itemTapped(category: String) {
-        viewModel.updateQuery(text: category)
-        viewModel.fetchInitialVacationPlaces(queryText: category)
+        placesFeedViewModel.updateQuery(text: category)
+        placesFeedViewModel.fetchInitialVacationPlaces(queryText: category)
     }
 }
 
@@ -304,7 +306,7 @@ extension HomeViewController: UISearchBarDelegate {
 
 extension HomeViewController: PlacesListNotificationDelegate, MKLocalSearchCompleterDelegate {
     func getNextPage(indexPaths: [IndexPath]) {
-        viewModel.fetchNextPage(queryText: viewModel.queryText, indexPaths: indexPaths)
+        placesFeedViewModel.fetchNextPage(queryText: placesFeedViewModel.queryText, indexPaths: indexPaths)
     }
 }
 
