@@ -76,9 +76,9 @@ final class PlacesFeedViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 let indexPathToReload = self.visibleIndexPathsToReload(indexPaths: indexPaths, visibleIndexPaths: self.tableView.indexPathsForVisibleRows ?? [])
-                tableView.performBatchUpdates {
-                    self.tableView.reloadRows(at: indexPathToReload, with: .none)
-                }
+                self.tableView.beginUpdates()
+                self.tableView.insertRows(at: indexPaths, with: .automatic)
+                self.tableView.endUpdates()
             }
         }
         
@@ -91,6 +91,11 @@ final class PlacesFeedViewController: UIViewController {
         }
     }
 }
+
+//                let indexPathToReload = self.visibleIndexPathsToReload(indexPaths: indexPaths, visibleIndexPaths: self.tableView.indexPathsForVisibleRows ?? [])
+//                tableView.performBatchUpdates {
+//                    self.tableView.reloadRows(at: indexPathToReload, with: .none)
+//                }
 
 extension PlacesFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -121,10 +126,8 @@ extension PlacesFeedViewController: UITableViewDataSourcePrefetching {
     }
     
     private func visibleIndexPathsToReload(indexPaths: [IndexPath], visibleIndexPaths: [IndexPath]) -> [IndexPath] {
-        
         let indexPathInterSection = Set(visibleIndexPaths).intersection(indexPaths)
         return Array(indexPathInterSection)
-        
     }
 }
 

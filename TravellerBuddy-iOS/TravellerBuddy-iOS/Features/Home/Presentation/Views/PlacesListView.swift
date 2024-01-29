@@ -69,9 +69,7 @@ final class PlacesListView: UIView {
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.prefetchDataSource = self
         collectionView.register(PlacesListCell.self, forCellWithReuseIdentifier: PlacesListCell.defaultReuseIdentifier)
-        collectionView.register(CollectionViewLoader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionViewLoader")
     }
     
     func refreshView(with data: [PlacesListItemUIModel]) {
@@ -82,16 +80,7 @@ final class PlacesListView: UIView {
     func insertItems(sections: [Int], indexPaths: [IndexPath], newItems: [PlacesListItemUIModel]) {
         viewModel.addData(items: newItems)
         collectionView.performBatchUpdates { [weak self] in
-            self?.collectionView.reloadSections(IndexSet(integer: 0))
-        }
-    }
-    
-    func updateLoading(loadingType: PlacesListLoadingType) {
-        switch loadingType {
-        case .nextPage:
-            nextPageLoadingSpinner?.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        case .hideLoader:
-            nextPageLoadingSpinner?.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            self?.collectionView.insertItems(at: indexPaths)
         }
     }
     
@@ -110,16 +99,6 @@ final class PlacesListView: UIView {
                 self?.collectionView.reloadData()
             }
         }
-        
-        viewModel.refreshNextPage = { (indexPaths, items) in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                let indexPathToReload = self.visibleIndexPathsToReload(indexPaths: indexPaths, visibleIndexPaths: self.collectionView.indexPathsForVisibleItems)
-                collectionView.performBatchUpdates { [weak self] in
-                    self?.collectionView.reloadSections(IndexSet(integer: 0))
-                }
-            }
-        }
     }
 }
 
@@ -135,21 +114,6 @@ extension PlacesListView: UICollectionViewDataSource, UICollectionViewDelegate {
         let item = viewModel.getItem(for: indexPath.row)
         cell.display(viewModel: item)
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionView.elementKindSectionFooter:
-            nextPageLoadingSpinner = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionViewLoader", for: indexPath)
-            return nextPageLoadingSpinner ?? UICollectionReusableView()
-        default:
-            return UICollectionReusableView()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: 100, height: 44)
     }
 }
 
@@ -168,46 +132,3 @@ extension PlacesListView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension PlacesListView: UICollectionViewDataSourcePrefetching {
-    
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        viewModel.fetchNextPage(queryText: "Beaches", indexPaths: indexPaths)
-    }
-    
-    private func visibleIndexPathsToReload(indexPaths: [IndexPath], visibleIndexPaths: [IndexPath]) -> [IndexPath] {
-        
-        let indexPathInterSection = Set(visibleIndexPaths).intersection(indexPaths)
-        return Array(indexPathInterSection)
-        
-    }
-}
-
-class CollectionViewLoader: UICollectionReusableView {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        makeReusableActivityIndicator()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func makeReusableActivityIndicator() {
-        let style = UIActivityIndicatorView.Style.gray
-        let activityIndicator = UIActivityIndicatorView(style: style)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.startAnimating()
-        activityIndicator.isHidden = false
-        let reusableContainer = UICollectionReusableView()
-        reusableContainer.addSubview(activityIndicator)
-        self.addSubview(reusableContainer)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            activityIndicator.heightAnchor.constraint(equalToConstant: 50),
-            activityIndicator.widthAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-}

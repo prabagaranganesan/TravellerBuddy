@@ -59,7 +59,7 @@ class HomeViewController: UIViewController {
         searchBar.delegate = self
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.searchTextField.backgroundColor = .clear
-        searchBar.placeholder = "Search destination..."
+        searchBar.placeholder = "Search destination..." //TODO: update copies
         return searchBar
     }()
     
@@ -92,7 +92,7 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    //TODO: Move this map related view to different componen and bleow secion
+    //TODO: Move this map related view to different component and bleow secion
     lazy var mapView: MKMapView = {
         let view: MKMapView = MKMapView()
         let noLocation = CLLocationCoordinate2D(latitude: 13.0827, longitude: 80.2707)
@@ -241,14 +241,6 @@ class HomeViewController: UIViewController {
                 guard let self = self else { return }
                 self.placesListView.insertItems(sections: [], indexPaths: indexPath, newItems: items)
             }
-        }
-        
-        placesFeedViewModel.showNextPageLoader = { [weak self] in
-            self?.placesListView.updateLoading(loadingType: .nextPage)
-        }
-        
-        placesFeedViewModel.hideNextPageLoader = { [weak self] in
-            self?.placesListView.updateLoading(loadingType: .hideLoader)
         }
     }
 }

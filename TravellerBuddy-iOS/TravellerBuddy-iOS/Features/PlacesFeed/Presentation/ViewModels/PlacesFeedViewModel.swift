@@ -44,6 +44,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
 
     func fetchInitialVacationPlaces(queryText: String) {
         let query = TouristQuery(query: queryText)
+        paginationHelper.updatePageInProgress(status: true)
         repository.fetchTouristsList(query: query, page: initialPageCount) { cacheViewModel in
             //TODO: Handle cache data
             print(cacheViewModel)
@@ -115,7 +116,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
 extension PlacesFeedViewModel {
     
     var numberOfItems: Int {
-        return totalItemsCount
+        return items.count
     }
     
     func getItem(for index: Int) -> PlacesListItemUIModel? {

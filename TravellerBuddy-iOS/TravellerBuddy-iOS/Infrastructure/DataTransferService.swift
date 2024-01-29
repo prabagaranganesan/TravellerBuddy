@@ -39,7 +39,8 @@ final class DefaultDataTransferService: DataTransferService {
         with endpoint: E,
         completion: @escaping CompletionHandler<T>
     ) -> NetworkCancellable? where T : Decodable, T == E.Response, E : ResponseRequestable {
-        networkService.request(endpoint: endpoint) { result in
+        networkService.request(endpoint: endpoint) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let data):
                 let result: Result<T, DataTransferError> = self.decode(data: data, decoder: endpoint.responseDecoder)
@@ -55,7 +56,8 @@ final class DefaultDataTransferService: DataTransferService {
         with endpoint: E,
         completion: @escaping CompletionHandler<Void>
     ) -> NetworkCancellable? where E : ResponseRequestable, E.Response == Void {
-        networkService.request(endpoint: endpoint) { result in
+        networkService.request(endpoint: endpoint) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success:
                 completion(.success(()))

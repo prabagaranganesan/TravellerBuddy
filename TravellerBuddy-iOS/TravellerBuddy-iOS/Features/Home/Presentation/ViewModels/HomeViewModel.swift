@@ -67,22 +67,29 @@ class PaginationHelper {
     }
     
     func shouldFetchNextPage(indexPaths: [IndexPath], completion: @escaping (Bool) -> Void) {
-        queue.async { [weak self] in
-            guard let self = self else {
-                completion(false)
-                return
-            }
-            self.nextIndexPaths = indexPaths
-            guard indexPaths.first != nil else {
-                completion(false)
-                return
-            }
-            
-            let status = !isNextPageInProgress && pageCount <= totalAvailablePage && indexPaths.contains(where: isLoadingCell)
-            completion(status)
+        self.nextIndexPaths = indexPaths
+        guard indexPaths.first != nil else {
+            completion(false)
+            return
         }
+        guard !isNextPageInProgress else {
+            completion(false)
+            return
+        }
+        
+        guard pageCount <= totalAvailablePage else {
+            completion(false)
+            return
+        }
+        
+        guard isLastItem(indexPaths: indexPaths) else {
+            completion(false)
+            return
+        }
+        
+        completion(pageCount <= totalAvailablePage)
     }
-    
+
     func calculateIndexPathsToReload(from newItems:  [PlacesListItemUIModel]) -> [IndexPath] {
         let startIndex = totalItems.count - newItems.count
         let endIndex = startIndex + newItems.count
@@ -93,41 +100,36 @@ class PaginationHelper {
         return indexPath.row >= totalItems.count
     }
     
-    private func isLastItem(indexPath: IndexPath) -> Bool {
-        return totalItems.count == indexPath.row + 1
+    private func isLastItem(indexPaths: [IndexPath]) -> Bool {
+        for indexPath in indexPaths {
+            if indexPath.row >= totalItems.count-1 {
+                return true
+            }
+        }
+        return false
     }
     
     func updatePageInProgress(status: Bool) {
-        queue.async { [weak self] in
-            self?.isNextPageInProgress = status //TODO: handle concurrency
-        }
+        self.isNextPageInProgress = status //TODO: handle concurrency
     }
     
     func addItems(newItems: [PlacesListItemUIModel]) {
-        queue.async { [weak self] in
-            self?.currentItems = newItems
-            self?.totalItems += newItems
-        }
+        self.currentItems = newItems
+        self.totalItems += newItems
     }
     
     func updateTotalPage(count: Int) {
-        queue.async { [weak self] in
-            self?.totalAvailablePage = count
-        }
+        self.totalAvailablePage = count
     }
     
     func reset() {
-        queue.async { [weak self] in
-            self?.totalItems = []
-            self?.nextIndexPaths = []
-            self?.pageCount = 1
-            self?.isNextPageInProgress = false
-        }
+        self.totalItems = []
+        self.nextIndexPaths = []
+        self.pageCount = 1
+        self.isNextPageInProgress = false
     }
     
     func updateCurrentItems(items: [PlacesListItemUIModel]) {
-        queue.async {
-            self.currentItems = items
-        }
+        self.currentItems = items
     }
 }
