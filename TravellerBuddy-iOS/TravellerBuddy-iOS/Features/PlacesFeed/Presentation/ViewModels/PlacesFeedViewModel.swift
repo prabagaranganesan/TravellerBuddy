@@ -33,16 +33,18 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
     private let repository: TouristsRepository
     private let paginationHelper: PaginationHelper
     private var initialPageCount = 1
-    private (set) var queryText: String = "Beaches"
+    private (set) var queryText: String
     private var items: [PlacesListItemUIModel] = []
     private var totalItemsCount: Int = 0
     
-    init(repository: TouristsRepository, paginationHelper: PaginationHelper = PaginationHelper()) {
+    init(repository: TouristsRepository, paginationHelper: PaginationHelper = PaginationHelper(), queryText: String) {
         self.repository = repository
         self.paginationHelper = paginationHelper
+        self.queryText = queryText
     }
 
     func fetchInitialVacationPlaces(queryText: String) {
+        self.queryText = queryText
         let query = TouristQuery(query: queryText)
         paginationHelper.updatePageInProgress(status: true)
         repository.fetchTouristsList(query: query, page: initialPageCount) { cacheViewModel in

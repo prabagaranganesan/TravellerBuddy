@@ -30,7 +30,7 @@ final class PlacesFeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
-        viewModel.fetchInitialVacationPlaces(queryText: "Havelock island beaches")
+        viewModel.fetchInitialVacationPlaces(queryText: viewModel.queryText)
     }
     
     override func loadView() {

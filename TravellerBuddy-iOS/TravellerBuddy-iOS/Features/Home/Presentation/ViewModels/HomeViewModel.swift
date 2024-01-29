@@ -11,6 +11,7 @@ protocol IHomeViewModel {
     var categories: [CategoryItemViewModel] { get }
     var sectionHeaderViewModel: SectionHeaderViewModel { get }
     var mapHeaderViewModel: SectionHeaderViewModel { get }
+    func update(queryText: String)
     func exploreCTATapped()
 }
 
@@ -25,6 +26,7 @@ final class HomeViewModel: IHomeViewModel {
     
     private let repository: TouristsRepository
     private var initialPageCount = 1
+    private var queryText: String = "Beaches" //Initial search category
     
     
     init(repository: TouristsRepository) {
@@ -46,9 +48,13 @@ final class HomeViewModel: IHomeViewModel {
         let forestCategory = CategoryItemViewModel(title: "Forests", imageName: "Forest")
         return [beachCategory, mountaintCategory, waterFallsCategory, forestCategory]
     }
+    
+    func update(queryText: String) {
+        self.queryText = queryText
+    }
 
     func exploreCTATapped() {
-        homeCoordinator?.showPlacesFeedScreen()
+        homeCoordinator?.showPlacesFeedScreen(with: queryText)
     }
 }
 

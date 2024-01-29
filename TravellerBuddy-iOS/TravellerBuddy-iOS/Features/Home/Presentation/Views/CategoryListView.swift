@@ -14,7 +14,7 @@ struct CategoryItemViewModel {
 }
 
 protocol CategoryItemTapDelegate: AnyObject {
-    func itemTapped(category: String)
+    func categoryItemTapped(category: String)
 }
 
 final class CategoryListView: UIView {
@@ -91,7 +91,7 @@ extension CategoryListView: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedItem = items[indexPath.row]
-        delegate?.itemTapped(category: selectedItem.title)
+        delegate?.categoryItemTapped(category: selectedItem.title)
     }
 }
 

@@ -235,21 +235,15 @@ class HomeViewController: UIViewController {
                 self.placesListView.refreshView(with: viewModel.items)
             }
         }
-        
-        placesFeedViewModel.refreshNextPage = { [weak self] (indexPath, items) in
-            DispatchQueue.main.async { //TODO: move to repository or viewmodel
-                guard let self = self else { return }
-                self.placesListView.insertItems(sections: [], indexPaths: indexPath, newItems: items)
-            }
-        }
     }
 }
 
 extension HomeViewController: CategoryItemTapDelegate {
     
-    func itemTapped(category: String) {
+    func categoryItemTapped(category: String) {
         placesFeedViewModel.updateQuery(text: category)
         placesFeedViewModel.fetchInitialVacationPlaces(queryText: category)
+        viewModel.update(queryText: category)
     }
 }
 

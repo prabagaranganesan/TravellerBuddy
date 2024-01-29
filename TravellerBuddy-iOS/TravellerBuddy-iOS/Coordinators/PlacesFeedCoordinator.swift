@@ -18,9 +18,9 @@ final class PlacesFeedCoordinator {
         self.appDIController = appDIController
     }
     
-    func start() {
+    func start(with queryText: String) {
         let touristReposiotry = DefaultTouristsRepository(dataTransferService: appDIController.apiDataTransferService)
-        let viewModel = PlacesFeedViewModel(repository: touristReposiotry)
+        let viewModel = PlacesFeedViewModel(repository: touristReposiotry, queryText: queryText)
         let placesFeedVC = PlacesFeedViewController(viewModel: viewModel)
         navigationController.pushViewController(placesFeedVC, animated: true)
     }
