@@ -196,6 +196,11 @@ final class PlacesFeedCell: UITableViewCell {
         ])
     }
     
+    private func showShimmer() {
+        imageBanner.beginShimmer(shape: .rectangle)
+        titleLabel.beginShimmer(shape: .rectangle)
+    }
+    
     private func applyCornerRadius() {
         self.clipsToBounds = true
         self.layer.cornerRadius = 16
@@ -205,7 +210,10 @@ final class PlacesFeedCell: UITableViewCell {
     }
     
     func display(viewModel: PlacesListItemUIModel?) {
-        guard let viewModel = viewModel else { return }
+        guard let viewModel = viewModel else {
+            showShimmer()
+            return
+        }
         titleLabel.text = viewModel.title?.localizedCapitalized
         guard let imagePath = viewModel.imagePath, let url = URL(string: imagePath) else { return }
         imageBanner.setImage(with: url)

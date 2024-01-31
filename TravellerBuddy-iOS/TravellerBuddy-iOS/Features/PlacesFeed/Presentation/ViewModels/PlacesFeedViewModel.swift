@@ -36,6 +36,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
     private (set) var queryText: String
     private var items: [PlacesListItemUIModel] = []
     private var totalItemsCount: Int = 0
+    private var showShimmer = true
     
     init(repository: TouristsRepository, paginationHelper: PaginationHelper = PaginationHelper(), queryText: String) {
         self.repository = repository
@@ -46,6 +47,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
     func fetchInitialVacationPlaces(queryText: String) {
         self.queryText = queryText
         let query = TouristQuery(query: queryText)
+        self.showShimmer = true
         paginationHelper.updatePageInProgress(status: true)
         repository.fetchTouristsList(query: query, page: initialPageCount) { cacheViewModel in
             //TODO: Handle cache data
@@ -69,6 +71,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
                 self?.hideNextPageLoader()
                 return
             }
+            self.showShimmer = true
             self.showNextPageLoader()
             self.paginationHelper.updatePageInProgress(status: true)
             let query = TouristQuery(query: queryText)
@@ -91,6 +94,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
     }
     
     private func handleSuccess(viewModel: TouristListViewModel) {
+        showShimmer = false
         paginationHelper.updatePageCount(by: 1)
         paginationHelper.addItems(newItems: viewModel.items)
         paginationHelper.updatePageInProgress(status: false)
@@ -102,6 +106,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
     }
     
     private func handleNextPageSuccess(viewModel: TouristListViewModel) {
+        showShimmer = false
         paginationHelper.addItems(newItems: viewModel.items)
         items.append(contentsOf: viewModel.items)
         paginationHelper.updatePageCount(by: 1) //TODO: move to constant
@@ -118,7 +123,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
 extension PlacesFeedViewModel {
     
     var numberOfItems: Int {
-        return items.count
+        return showShimmer ? 6 : items.count
     }
     
     func getItem(for index: Int) -> PlacesListItemUIModel? {

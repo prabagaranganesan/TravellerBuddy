@@ -18,16 +18,12 @@ protocol IHomeViewModel {
 final class HomeViewModel: IHomeViewModel {
     
     var refreshPlaces: (TouristListViewModel) -> Void = { _ in }
-    var refreshNextPage: ([IndexPath], [PlacesListItemUIModel]) -> Void = { (_, _) in }
-    var showNextPageLoader: () -> Void = { }
-    var hideNextPageLoader: () -> Void = { }
     
     weak var homeCoordinator: HomeCoordinator?
     
     private let repository: TouristsRepository
     private var initialPageCount = 1
-    private var queryText: String = "Beaches" //Initial search category
-    
+    private var queryText: String = ""
     
     init(repository: TouristsRepository) {
         self.repository = repository

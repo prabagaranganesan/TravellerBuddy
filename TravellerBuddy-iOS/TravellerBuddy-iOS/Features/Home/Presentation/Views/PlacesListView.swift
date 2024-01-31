@@ -53,6 +53,7 @@ final class PlacesListView: UIView {
         self.backgroundColor = .clear
         self.addSubview(collectionView)
         applyConstraints()
+        self.collectionView.reloadData()
     }
     
     private func applyConstraints() {

@@ -74,8 +74,22 @@ final class PlacesListCell: UICollectionViewCell {
         self.titleLabel.text = nil
     }
     
+    private func showShimmer() {
+        titleLabel.beginShimmer(shape: .rectangle)
+        imageView.beginShimmer(shape: .rectangle)
+    }
+    
+    private func hideShimmer() {
+        titleLabel.endShimmer()
+        imageView.endShimmer()
+    }
+    
     func display(viewModel: PlacesListItemUIModel?) {
-        guard let viewModel = viewModel else { return }
+        guard let viewModel = viewModel else {
+            showShimmer()
+            return
+        }
+        hideShimmer()
         titleLabel.text = viewModel.title?.localizedCapitalized
         guard let imagePath = viewModel.imagePath, let url = URL(string: imagePath) else { return }
         imageView.setImage(with: url)

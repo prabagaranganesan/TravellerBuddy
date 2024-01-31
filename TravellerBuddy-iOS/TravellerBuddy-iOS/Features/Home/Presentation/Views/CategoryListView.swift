@@ -72,6 +72,7 @@ final class CategoryListView: UIView {
     func refreshView(with data: [CategoryItemViewModel]) {
         items = data
         collectionView.reloadData()
+        collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .left)
     }
 }
 

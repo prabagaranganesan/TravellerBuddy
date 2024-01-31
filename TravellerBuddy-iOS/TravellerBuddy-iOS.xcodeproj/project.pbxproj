@@ -49,6 +49,7 @@
 		506D49BC2B4161AF00B38868 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49BB2B4161AF00B38868 /* SearchResultViewModel.swift */; };
 		506D49BE2B4161E300B38868 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49BD2B4161E300B38868 /* Models.swift */; };
 		506D49C02B41621700B38868 /* EmptySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49BF2B41621700B38868 /* EmptySearchViewModel.swift */; };
+		50CA3BCB2B695615009BA3C6 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CA3BCA2B695615009BA3C6 /* ShimmerView.swift */; };
 		50D75E672B4A4BEE007B2605 /* PlacesFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D75E662B4A4BEE007B2605 /* PlacesFeedViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +117,7 @@
 		506D49BB2B4161AF00B38868 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		506D49BD2B4161E300B38868 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		506D49BF2B41621700B38868 /* EmptySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchViewModel.swift; sourceTree = "<group>"; };
+		50CA3BCA2B695615009BA3C6 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		50D75E662B4A4BEE007B2605 /* PlacesFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesFeedViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -274,6 +276,7 @@
 		506D49612B32AD7C00B38868 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				50CA3BC92B69560C009BA3C6 /* Shimmer */,
 				506D49932B34915C00B38868 /* Extensions */,
 				506D49792B34733B00B38868 /* Cancellable.swift */,
 				506D49872B34800100B38868 /* Constant.swift */,
@@ -453,6 +456,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		50CA3BC92B69560C009BA3C6 /* Shimmer */ = {
+			isa = PBXGroup;
+			children = (
+				50CA3BCA2B695615009BA3C6 /* ShimmerView.swift */,
+			);
+			path = Shimmer;
+			sourceTree = "<group>";
+		};
 		50D75E652B4A4BDE007B2605 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +617,7 @@
 				506D49952B34916F00B38868 /* UIViewExtensions.swift in Sources */,
 				506D49762B34716400B38868 /* DefaultTouristsRepository.swift in Sources */,
 				506D49822B347CFC00B38868 /* APIEndpoints.swift in Sources */,
+				50CA3BCB2B695615009BA3C6 /* ShimmerView.swift in Sources */,
 				506D496B2B32E11200B38868 /* AppConfiguration.swift in Sources */,
 				506D49922B3490A200B38868 /* HomeViewController.swift in Sources */,
 				506D492E2B32AD2200B38868 /* AppDelegate.swift in Sources */,
