@@ -26,7 +26,6 @@ final class RootCoordinator {
     }
 }
 
-
 final class HomeCoordinator {
     private let navigationController: UINavigationController
     private let appDIController: AppDIContainer
@@ -40,7 +39,7 @@ final class HomeCoordinator {
     func start() {
         //TODO: move to factory class
         let touristReposiotry = DefaultTouristsRepository(dataTransferService: appDIController.apiDataTransferService)
-        let viewModel = HomeViewModel(repository: touristReposiotry)
+        let viewModel = HomeViewModel(repository: touristReposiotry, queryText: "Beaches")
         viewModel.homeCoordinator = self
         let searchViewModel = SearchResultViewModel()
         let placesFeedViewModel = PlacesFeedViewModel(repository: touristReposiotry, queryText: "Beaches")

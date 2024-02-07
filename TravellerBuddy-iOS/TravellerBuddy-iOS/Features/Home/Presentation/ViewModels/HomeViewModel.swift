@@ -23,10 +23,11 @@ final class HomeViewModel: IHomeViewModel {
     
     private let repository: TouristsRepository
     private var initialPageCount = 1
-    private var queryText: String = ""
+    private var queryText: String
     
-    init(repository: TouristsRepository) {
+    init(repository: TouristsRepository, queryText: String) {
         self.repository = repository
+        self.queryText = queryText
     }
     
     var sectionHeaderViewModel: SectionHeaderViewModel {

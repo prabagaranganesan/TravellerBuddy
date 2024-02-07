@@ -134,7 +134,6 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = UIColor.systemGray6
         bindViewModel()
         loadInitialData()
-        placesFeedViewModel.fetchInitialVacationPlaces(queryText: "Beaches")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -291,6 +290,11 @@ extension HomeViewController: UISearchBarDelegate {
 extension HomeViewController: PlacesListNotificationDelegate, MKLocalSearchCompleterDelegate {
     func getNextPage(indexPaths: [IndexPath]) {
         placesFeedViewModel.fetchNextPage(queryText: placesFeedViewModel.queryText, indexPaths: indexPaths)
+    }
+    
+    func showError(error: Error) {
+        let alertCard = AlertCard.card(for: .noInternetRetry)
+        alertCard?.showFromView(fromView: self.view, animated: true)
     }
 }
 
