@@ -10,6 +10,7 @@ import UIKit
 
 protocol PlacesListNotificationDelegate: AnyObject {
     func getNextPage(indexPaths: [IndexPath])
+    func showError(error: Error)
 }
 
 enum PlacesListLoadingType {
@@ -99,6 +100,10 @@ final class PlacesListView: UIView {
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }
+        }
+        
+        viewModel.showError = { [weak self] error in
+            self?.delegate?.showError(error: error)
         }
     }
 }

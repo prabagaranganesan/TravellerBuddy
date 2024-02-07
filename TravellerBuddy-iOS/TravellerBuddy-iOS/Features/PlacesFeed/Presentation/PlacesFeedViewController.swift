@@ -92,11 +92,6 @@ final class PlacesFeedViewController: UIViewController {
     }
 }
 
-//                let indexPathToReload = self.visibleIndexPathsToReload(indexPaths: indexPaths, visibleIndexPaths: self.tableView.indexPathsForVisibleRows ?? [])
-//                tableView.performBatchUpdates {
-//                    self.tableView.reloadRows(at: indexPathToReload, with: .none)
-//                }
-
 extension PlacesFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfItems
@@ -201,6 +196,11 @@ final class PlacesFeedCell: UITableViewCell {
         titleLabel.beginShimmer(shape: .rectangle)
     }
     
+    private func hideShimmer() {
+        imageBanner.endShimmer()
+        titleLabel.endShimmer()
+    }
+    
     private func applyCornerRadius() {
         self.clipsToBounds = true
         self.layer.cornerRadius = 16
@@ -214,6 +214,7 @@ final class PlacesFeedCell: UITableViewCell {
             showShimmer()
             return
         }
+        hideShimmer()
         titleLabel.text = viewModel.title?.localizedCapitalized
         guard let imagePath = viewModel.imagePath, let url = URL(string: imagePath) else { return }
         imageBanner.setImage(with: url)

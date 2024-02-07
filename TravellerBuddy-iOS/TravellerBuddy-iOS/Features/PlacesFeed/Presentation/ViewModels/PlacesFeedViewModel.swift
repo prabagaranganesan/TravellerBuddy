@@ -12,6 +12,7 @@ protocol IPlacesFeedViewModel {
     var refreshNextPage: ([IndexPath], [PlacesListItemUIModel]) -> Void { get set }
     var showNextPageLoader: () -> Void { get set }
     var hideNextPageLoader: () -> Void { get set }
+    var showError: (Error) -> Void { get set }
     var queryText: String { get }
     func fetchInitialVacationPlaces(queryText: String)
     func fetchNextPage(queryText: String, indexPaths: [IndexPath])
@@ -29,6 +30,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
     var refreshNextPage: ([IndexPath], [PlacesListItemUIModel]) -> Void = { (_, _) in }
     var showNextPageLoader: () -> Void = { }
     var hideNextPageLoader: () -> Void = { }
+    var showError: (Error) -> Void = { _ in }
     
     private let repository: TouristsRepository
     private let paginationHelper: PaginationHelper
@@ -58,8 +60,9 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
             case .success(let viewModel):
                 self.handleSuccess(viewModel: viewModel)
             case .failure(let error):
-                print(error)
-                //TOOD: show error
+                DispatchQueue.main.async {
+                    self.showError(error)
+                }
             }
         }
     }
@@ -86,8 +89,7 @@ final class PlacesFeedViewModel: IPlacesFeedViewModel {
                 case .success(let viewModel):
                     self.handleNextPageSuccess(viewModel: viewModel)
                 case .failure(let error):
-                    print(error)
-                    //TOOD: show error
+                    showError(error)
                 }
             }
         }
