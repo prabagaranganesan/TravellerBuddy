@@ -294,7 +294,7 @@ extension HomeViewController: PlacesListNotificationDelegate, MKLocalSearchCompl
     
     func showError(error: Error) {
         let alertCard = AlertCard.card(for: .noInternetRetry)
-        alertCard?.showFromView(fromView: self.view, animated: true)
+        alertCard?.showFromVC(self.navigationController, animated: true, completion: nil)
     }
 }
 

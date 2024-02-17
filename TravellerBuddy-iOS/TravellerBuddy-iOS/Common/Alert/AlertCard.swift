@@ -70,8 +70,6 @@ class AlertCard: Card {
         return card
     }
     
-    
-    
     class func buttonTitleForActionInfo(action: ActionInfo?) -> String {
         var btnTitle: String
         if let actionTitle = action?.title {

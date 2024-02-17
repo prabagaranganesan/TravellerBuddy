@@ -24,6 +24,8 @@ class Card: UIView {
     private var contentTopGap: CGFloat = 40
     private var crossButton: UIButton?
     private var contentBottomGap: CGFloat = 0
+    private var dismissTapped: (() -> Void)?
+    weak var fromVC: UIViewController?
     
     var contentView: UIView?
     
@@ -34,7 +36,7 @@ class Card: UIView {
     }()
 
     
-    init(frame: CGRect, dismissable: Bool) {
+    init(frame: CGRect, dismissable: Bool = true) {
         self.isDismissible = dismissable
         super.init(frame: frame)
         self.initialSetup()
@@ -103,13 +105,11 @@ class Card: UIView {
             if let block = self.userDismissAction {
                 block()
             }
-
-            self.dismiss(animated: true)
+            dismissTapped?()
+            self.fromVC?.dismiss(animated: true, completion: {
+                self.fromVC = nil
+            })
         }
-    }
-    
-    func dismiss(animated: Bool) {
-        
     }
     
     @objc open func closeClicked(button: UIButton) {
@@ -146,7 +146,7 @@ class Card: UIView {
         return resized
     }
     
-    func showFromVC(_ fromVC: UIViewController, animated: Bool, completion: (() -> Void)?) {
+    func showFromVC(_ fromVC: UIViewController?, animated: Bool, completion: (() -> Void)?) {
         let showFromVC = {
             let viewController = UIViewController()
             
@@ -157,9 +157,14 @@ class Card: UIView {
             }
             
             viewController.view.backgroundColor = UIColor.clear
-            fromVC.present(viewController, animated: animated) {
-                self.showFromVC(fromVC, animated: animated, completion: completion)
+            self.fromVC = fromVC
+            fromVC?.present(viewController, animated: animated) {
+                self.showFromView(fromView: viewController.view, animated: true)
             }
+            let dismissTapped = {
+                viewController.view.backgroundColor = .clear
+            }
+            self.dismissTapped = dismissTapped
         }
         
         if Thread.isMainThread {
