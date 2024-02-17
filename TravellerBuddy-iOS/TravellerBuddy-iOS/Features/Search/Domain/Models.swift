@@ -13,7 +13,6 @@ struct SearchResultCellViewModel {
     let subTitle: String
 }
 
-
 extension MKLocalSearchCompletion {
     
     func toDomain() -> SearchResultCellViewModel {
