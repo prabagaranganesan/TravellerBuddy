@@ -49,6 +49,7 @@
 		506D49BC2B4161AF00B38868 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49BB2B4161AF00B38868 /* SearchResultViewModel.swift */; };
 		506D49BE2B4161E300B38868 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49BD2B4161E300B38868 /* Models.swift */; };
 		506D49C02B41621700B38868 /* EmptySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D49BF2B41621700B38868 /* EmptySearchViewModel.swift */; };
+		508414AA2BB979050024DF54 /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508414A92BB979050024DF54 /* PlaceDetailsViewController.swift */; };
 		5089902A2B80AB5300910D65 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508990292B80AB5300910D65 /* HomeCoordinator.swift */; };
 		5089902C2B80ABC800910D65 /* PaginationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5089902B2B80ABC800910D65 /* PaginationHelper.swift */; };
 		5089902F2B80ABFA00910D65 /* PlacesFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5089902E2B80ABFA00910D65 /* PlacesFeedCell.swift */; };
@@ -58,6 +59,14 @@
 		508990392B80B1E300910D65 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508990382B80B1E300910D65 /* AlertAction.swift */; };
 		5092DE332B6B373D00F30AD5 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092DE322B6B373D00F30AD5 /* AlertType.swift */; };
 		5092DE352B6B3DE200F30AD5 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5092DE342B6B3DE200F30AD5 /* Error.swift */; };
+		50AEE1322BC0F7F2002583B9 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 50AEE11F2BC0F7F2002583B9 /* OFL.txt */; };
+		50AEE1332BC0F7F2002583B9 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50AEE1202BC0F7F2002583B9 /* Poppins-Regular.ttf */; };
+		50AEE1352BC0F7F2002583B9 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50AEE1222BC0F7F2002583B9 /* Poppins-Bold.ttf */; };
+		50AEE1372BC0F7F2002583B9 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50AEE1242BC0F7F2002583B9 /* Poppins-Thin.ttf */; };
+		50AEE1382BC0F7F2002583B9 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50AEE1252BC0F7F2002583B9 /* Poppins-SemiBold.ttf */; };
+		50AEE13E2BC12D16002583B9 /* ASLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AEE13D2BC12D16002583B9 /* ASLabel.swift */; };
+		50AEE1402BC2B7B5002583B9 /* ASViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AEE13F2BC2B7B5002583B9 /* ASViewController.swift */; };
+		50AEE1422BC2B9D9002583B9 /* ASView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AEE1412BC2B9D9002583B9 /* ASView.swift */; };
 		50CA3BCB2B695615009BA3C6 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CA3BCA2B695615009BA3C6 /* ShimmerView.swift */; };
 		50D75E672B4A4BEE007B2605 /* PlacesFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D75E662B4A4BEE007B2605 /* PlacesFeedViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -126,6 +135,7 @@
 		506D49BB2B4161AF00B38868 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		506D49BD2B4161E300B38868 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		506D49BF2B41621700B38868 /* EmptySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchViewModel.swift; sourceTree = "<group>"; };
+		508414A92BB979050024DF54 /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
 		508990292B80AB5300910D65 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		5089902B2B80ABC800910D65 /* PaginationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationHelper.swift; sourceTree = "<group>"; };
 		5089902E2B80ABFA00910D65 /* PlacesFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesFeedCell.swift; sourceTree = "<group>"; };
@@ -135,6 +145,15 @@
 		508990382B80B1E300910D65 /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
 		5092DE322B6B373D00F30AD5 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		5092DE342B6B3DE200F30AD5 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		50AEE11F2BC0F7F2002583B9 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		50AEE1202BC0F7F2002583B9 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		50AEE1222BC0F7F2002583B9 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		50AEE1242BC0F7F2002583B9 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		50AEE1252BC0F7F2002583B9 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		50AEE13B2BC0F9EE002583B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		50AEE13D2BC12D16002583B9 /* ASLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASLabel.swift; sourceTree = "<group>"; };
+		50AEE13F2BC2B7B5002583B9 /* ASViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASViewController.swift; sourceTree = "<group>"; };
+		50AEE1412BC2B9D9002583B9 /* ASView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASView.swift; sourceTree = "<group>"; };
 		50CA3BCA2B695615009BA3C6 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		50D75E662B4A4BEE007B2605 /* PlacesFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesFeedViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -220,6 +239,7 @@
 		506D492C2B32AD2200B38868 /* TravellerBuddy-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				50AEE13C2BC12B8C002583B9 /* UIComponents */,
 				506D49AE2B3F05A600B38868 /* Features */,
 				506D49962B35258000B38868 /* Coordinators */,
 				506D49612B32AD7C00B38868 /* Common */,
@@ -236,6 +256,7 @@
 		506D49432B32AD2300B38868 /* TravellerBuddy-iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				50AEE13B2BC0F9EE002583B9 /* Info.plist */,
 				506D49442B32AD2300B38868 /* TravellerBuddy_iOSTests.swift */,
 			);
 			path = "TravellerBuddy-iOSTests";
@@ -410,6 +431,7 @@
 		506D49AE2B3F05A600B38868 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				508414A82BB978F00024DF54 /* PlaceDetails */,
 				500382912B46447F00B414D7 /* PlacesFeed */,
 				506D49C12B4162A900B38868 /* Home */,
 				506D49B72B41612000B38868 /* Search */,
@@ -470,6 +492,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		508414A82BB978F00024DF54 /* PlaceDetails */ = {
+			isa = PBXGroup;
+			children = (
+				508414A92BB979050024DF54 /* PlaceDetailsViewController.swift */,
+			);
+			path = PlaceDetails;
+			sourceTree = "<group>";
+		};
 		5089902D2B80ABED00910D65 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +543,29 @@
 				506D49B42B413EA000B38868 /* EmptySearchResultView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		50AEE1132BC0F7E6002583B9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				50AEE11F2BC0F7F2002583B9 /* OFL.txt */,
+				50AEE1202BC0F7F2002583B9 /* Poppins-Regular.ttf */,
+				50AEE1222BC0F7F2002583B9 /* Poppins-Bold.ttf */,
+				50AEE1242BC0F7F2002583B9 /* Poppins-Thin.ttf */,
+				50AEE1252BC0F7F2002583B9 /* Poppins-SemiBold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		50AEE13C2BC12B8C002583B9 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				50AEE1132BC0F7E6002583B9 /* Fonts */,
+				50AEE13D2BC12D16002583B9 /* ASLabel.swift */,
+				50AEE13F2BC2B7B5002583B9 /* ASViewController.swift */,
+				50AEE1412BC2B9D9002583B9 /* ASView.swift */,
+			);
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		50CA3BC92B69560C009BA3C6 /* Shimmer */ = {
@@ -635,6 +688,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50AEE1372BC0F7F2002583B9 /* Poppins-Thin.ttf in Resources */,
+				50AEE1382BC0F7F2002583B9 /* Poppins-SemiBold.ttf in Resources */,
+				50AEE1352BC0F7F2002583B9 /* Poppins-Bold.ttf in Resources */,
+				50AEE1322BC0F7F2002583B9 /* OFL.txt in Resources */,
+				50AEE1332BC0F7F2002583B9 /* Poppins-Regular.ttf in Resources */,
 				506D493A2B32AD2300B38868 /* LaunchScreen.storyboard in Resources */,
 				506D49372B32AD2300B38868 /* Assets.xcassets in Resources */,
 			);
@@ -675,8 +733,11 @@
 				506D49AB2B36B53600B38868 /* PlacesSectionHeaderView.swift in Sources */,
 				506D49732B34709400B38868 /* Request+Extension.swift in Sources */,
 				506D499A2B3525A800B38868 /* RootCoordinator.swift in Sources */,
+				50AEE13E2BC12D16002583B9 /* ASLabel.swift in Sources */,
 				5092DE352B6B3DE200F30AD5 /* Error.swift in Sources */,
 				506D49952B34916F00B38868 /* UIViewExtensions.swift in Sources */,
+				508414AA2BB979050024DF54 /* PlaceDetailsViewController.swift in Sources */,
+				50AEE1422BC2B9D9002583B9 /* ASView.swift in Sources */,
 				506D49762B34716400B38868 /* DefaultTouristsRepository.swift in Sources */,
 				506D49822B347CFC00B38868 /* APIEndpoints.swift in Sources */,
 				508990392B80B1E300910D65 /* AlertAction.swift in Sources */,
@@ -705,6 +766,7 @@
 				506D49C02B41621700B38868 /* EmptySearchViewModel.swift in Sources */,
 				506D496F2B34702200B38868 /* NetworkSessionManager.swift in Sources */,
 				506D49652B32B07300B38868 /* DataTransferService.swift in Sources */,
+				50AEE1402BC2B7B5002583B9 /* ASViewController.swift in Sources */,
 				506D49AD2B37148E00B38868 /* CategoryListView.swift in Sources */,
 				506D496D2B32E18500B38868 /* AppDIContainer.swift in Sources */,
 				506D499C2B353D0500B38868 /* PlacesListView.swift in Sources */,
@@ -930,6 +992,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TravellerBuddy-iOSTests/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gojek.prabagaran.TravellerBuddy-iOSTests";
@@ -949,6 +1013,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TravellerBuddy-iOSTests/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gojek.prabagaran.TravellerBuddy-iOSTests";

@@ -33,4 +33,9 @@ final class HomeCoordinator {
         placesFeedCoordinator = PlacesFeedCoordinator(navigationController: self.navigationController, appDIController: appDIController)
         placesFeedCoordinator?.start(with: queryText)
     }
+    
+    func showDetails(for id: String) {
+        let viewController = PlaceDetailsViewController()
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }

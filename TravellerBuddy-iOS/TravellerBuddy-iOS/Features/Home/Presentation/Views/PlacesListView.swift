@@ -11,6 +11,7 @@ import UIKit
 protocol PlacesListNotificationDelegate: AnyObject {
     func getNextPage(indexPaths: [IndexPath])
     func showError(error: Error)
+    func showDetails(for id: String)
 }
 
 enum PlacesListLoadingType {
@@ -120,6 +121,10 @@ extension PlacesListView: UICollectionViewDataSource, UICollectionViewDelegate {
         let item = viewModel.getItem(for: indexPath.row)
         cell.display(viewModel: item)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.showDetails(for: "\(indexPath.row)")
     }
 }
 

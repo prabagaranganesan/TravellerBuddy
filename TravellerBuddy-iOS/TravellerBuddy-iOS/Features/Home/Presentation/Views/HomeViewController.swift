@@ -296,6 +296,10 @@ extension HomeViewController: PlacesListNotificationDelegate, MKLocalSearchCompl
         let alertCard = AlertCard.card(for: .noInternetRetry)
         alertCard?.showFromVC(self.navigationController, animated: true, completion: nil)
     }
+    
+    func showDetails(for id: String) {
+        viewModel.showDetails(for: id)
+    }
 }
 
 extension HomeViewController: PlacesListHeaderTapDelegate {

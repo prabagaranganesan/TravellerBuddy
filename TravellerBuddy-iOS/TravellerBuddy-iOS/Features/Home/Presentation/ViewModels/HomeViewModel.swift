@@ -13,6 +13,7 @@ protocol IHomeViewModel {
     var mapHeaderViewModel: SectionHeaderViewModel { get }
     func update(queryText: String)
     func exploreCTATapped()
+    func showDetails(for id: String)
 }
 
 final class HomeViewModel: IHomeViewModel {
@@ -52,5 +53,9 @@ final class HomeViewModel: IHomeViewModel {
 
     func exploreCTATapped() {
         homeCoordinator?.showPlacesFeedScreen(with: queryText)
+    }
+    
+    func showDetails(for id: String) {
+        homeCoordinator?.showDetails(for: id)
     }
 }
