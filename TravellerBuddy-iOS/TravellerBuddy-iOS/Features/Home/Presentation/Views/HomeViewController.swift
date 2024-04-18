@@ -134,6 +134,7 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = UIColor.systemGray6
         bindViewModel()
         loadInitialData()
+        howSum(7, [5, 3, 4])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -306,4 +307,51 @@ extension HomeViewController: PlacesListHeaderTapDelegate {
     func rightCTATapped() {
         viewModel.exploreCTATapped()
     }
+}
+
+func gridTraveller(_ row: Int, _ column: Int) {
+    
+    var grid = [[Int]](repeating: [Int](repeating: 0, count: column+1), count: row+1)
+    grid[1][1] = 1
+    
+    for i in 1...row {
+        for j in 1...column {
+            if i == 1 && j == 1 { continue }
+            grid[i][j] = grid[i][j-1] + grid[i-1][j]
+        }
+    }
+    print(grid)
+}
+
+func canSum(_ input: [Int], _ target: Int) {
+    
+    var table = [Bool](repeating: false, count: target+1)
+    table[0] = true
+    
+    for i in 0...target {
+        if table[i] {
+            for j in input {
+                if (i+j) <= target {
+                    table[i+j] = true
+                }
+            }
+        }
+    }
+    print(table)
+}
+
+func howSum(_ target: Int, _ input: [Int]) {
+    var table = [[Int]?](repeating: nil, count: target+1)
+    table[0] = []
+    
+    for i in 0...target {
+        if let elementArr = table[i] {
+            for j in input {
+                if (i+j) <= target {
+                    table[i+j] = elementArr + [j]
+                }
+            }
+        }
+    }
+    print(table)
 }

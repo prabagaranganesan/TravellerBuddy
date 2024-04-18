@@ -25,11 +25,34 @@ final class PlaceDetailsViewController: ASUIViewController {
     
     private lazy var titleLabel: ASLabel = {
         let label: ASLabel = ASLabel.construct()
-        label.text = "adsfkjasdjkhfashjdfhjasdfhjasdf aksfhkjasfjhasfhjk"
+        label.text = "This is testing custom animation with ui component screen"
         label.typographyToken = theme.titleBold
         label.typographyToken = theme.typography.titleBold
         label.numberOfLines = 0
         return label
+    }()
+    let screenSize = UIScreen.main.bounds.size
+
+    private lazy var triangleImageView: UIImageView = {
+        let imageView: UIImageView = UIImageView(frame: CGRect(x: screenSize.width-50, y: screenSize.height/2, width: 200, height: 200))
+        imageView.transform = CGAffineTransform(rotationAngle: 52)
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "triangle")
+        return imageView
+    }()
+    
+    private lazy var hexagonImageView: UIImageView = {
+        let imageView: UIImageView = UIImageView(frame: CGRect(x: screenSize.width, y: 100, width: 130, height: 130))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "hexagon")
+        return imageView
+    }()
+    
+    private lazy var bubbleImageView: UIImageView = {
+        let imageView: UIImageView = UIImageView(frame: CGRect(x: screenSize.width, y: screenSize.height/2-100, width: 130, height: 130))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "bubble1")
+        return imageView
     }()
     
     var sundayGradient: CAGradientLayer?
@@ -61,6 +84,10 @@ final class PlaceDetailsViewController: ASUIViewController {
     
     private func setupView() {
         button.addSubview(buttonLayer)
+        view.addSubview(bubbleImageView)
+
+        view.addSubview(triangleImageView)
+        view.addSubview(hexagonImageView)
         view.addSubview(button)
         view.addSubview(titleLabel)
         self.viewBackgroundColortoken = theme.colors.fillBackground
@@ -82,6 +109,8 @@ final class PlaceDetailsViewController: ASUIViewController {
         ])
         
         addTapAction()
+        playAnimation()
+        startTimer()
     }
     
     private func addTapAction() {
@@ -91,12 +120,55 @@ final class PlaceDetailsViewController: ASUIViewController {
     private func addCornerRadius() {
         button.clipsToBounds = true
         button.layer.cornerRadius = 16
+        triangleImageView.clipsToBounds = true
+        triangleImageView.layer.cornerRadius = 40
+    }
+    
+    private func playAnimation() {
+                
+        UIView.animate(withDuration: 3, delay: 0, options: [.repeat, .autoreverse], animations:  { [weak self] in
+            guard let self = self else { return }
+            self.triangleImageView.transform =  CGAffineTransform(rotationAngle: -180)
+            self.triangleImageView.transform = CGAffineTransform(translationX: -self.screenSize.width/2-100, y: self.screenSize.height/2-150)
+        })
+    }
+    var timer: Timer = Timer()
+    
+    private func startTimer() {
+        playHexagonAnimation()
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(playHexagonAnimation), userInfo: nil, repeats: true)
+    }
+    
+    @objc func playHexagonAnimation() {
+        UIView.animateKeyframes(withDuration: 4, delay: 0) { [weak self] in
+            guard let self = self else { return }
+
+            UIView.animate(withDuration: 2, delay: 0, animations:  {
+                self.hexagonImageView.transform = CGAffineTransform(translationX: -self.screenSize.width/2, y: self.screenSize.height-200)
+            }) { _ in
+                UIView.animate(withDuration: 2, delay: 0, animations: {
+                    self.hexagonImageView.transform = CGAffineTransform(translationX: -700, y: 0).rotated(by: 57)
+                })
+            }
+        }
+        
+        UIView.animate(withDuration: 2, delay: 0, animations: { [weak self] in
+            guard let self = self else { return }
+            self.bubbleImageView.transform = CGAffineTransform(scaleX: 3, y: 3).translatedBy(x: -self.screenSize.width/2+100, y: 150)
+        }) { _ in
+            UIView.animate(withDuration: 3, delay: 0, animations: { [weak self] in
+                guard let self = self else { return }
+                self.bubbleImageView.transform = CGAffineTransform(translationX: -530, y: -300).scaledBy(x: 0.7, y: 0.7)
+            })
+        }
     }
     
     @objc
     func buttonTapped() {
 
-        UIView.animateKeyframes(withDuration: 0.46, delay: 0) {
+        UIView.animateKeyframes(withDuration: 0.46, delay: 0) { [weak self] in
+            guard let self = self else { return }
+
             UIView.animateKeyframes(withDuration: 0.10, delay: 0) {
                 self.button.transform = CGAffineTransform(scaleX: 0.76, y: 0.9)
             }
@@ -121,6 +193,10 @@ final class PlaceDetailsViewController: ASUIViewController {
             }
         }
     }
+    
+    deinit {
+        print("deinited")
+    }
 }
 
 extension UIView {
@@ -141,3 +217,4 @@ extension UIView {
         self.layer.insertSublayer(gradient, at: 0)
     }
 }
+
